@@ -1,4 +1,4 @@
-{% extends "pvbase.html" %}
+{% extends "pv_home.html" %}
 {% load i18n %}
 {% load convert_tags place_map_tags %}
 {% block more_scripts %}
@@ -41,35 +41,24 @@
     });
 </script>
 {% endblock %}
+
 {% block title %}{% trans "Artwork" %}{% endblock %}
-{% block navigation_bar %}
-<li>
-    <a href="{% url map %}">Map</a>
-</li>
-<li>
-    <a href="{% url series_list %}">Series</a>
-</li>
-<li>
-    <a href="{% url creators_list %}">Creators</a>
-</li>
-<li class="current">
-    <a href="{% url artworks_list %}">Artworks</a>
-</li>
-{% endblock %}
+
 {% block current_crumb %}{{ artwork.title }}{% endblock %}
-{% block pv_page_body %}
-<div class="pvtitle">
-    {{ artwork.title }}
+
+{% block main_body %}
+
+{% block breadcrumb %}{% endblock %}
+
+<div class="page-header">
+    <h2>{{ artwork.title }}</h2>
 </div>
-<div class="pvcolorspace" style="background-color: #ffffff;">
-</div>
-<div id="secWrapper">
-    <div id="wrapper">
-        <div id="container">
-            <table border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td class="pvimage_block" width="40%" align="right">
+
+<div class="container-fluid">
+    <div class="row-fluid">
+        <div class="span6">
                         <div class="img_artwork">
+                            <img src="/media/img/art3.png">
                             {% if artwork.images.count != 0 %}
                             {% for artImg in artwork.images.all %} 
                             {% if artImg.url %} 
@@ -86,91 +75,81 @@
                             {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
                             {% endif %} 
                         </div>
-                    </td>
-                    <td id="pvrecord" width="60%">
-                        <table>
-                            <tr>
-                                <td>
-                                    Creator:  {% for creator in artwork.creators.all %}<a class="hlink" href="{% url creator_record creator.id %}">{{ creator.name }} </a>
+        </div>
+        <div class="span6">
+<!--Creator-->
+                            <div class="dl-horizontal">
+                                <dt>Creator:  {% for creator in artwork.creators.all %}</dt>
+                                <dd><a href="{% url creator_record creator.id %}">{{ creator.name }} </a></dd>
                                     {% endfor %}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    {% if artwork.creation_year_start and artwork.creation_year_end %} 
-                                    Dated In: <span class="boldTxt">{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}</span>
-                                    {% else %} 
-                                    Dated In: <span class="boldTxt">n/a </span>
-                                    {% endif%}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    {% if artwork.original_place %} 
-                                    Original Destination:
-                                        {% if artwork.original_place.get_valid_point %}
-                                        <a class="hlink preview" rel="{% url map %}" href="{% place_map artwork.original_place.get_valid_point %}">{{ artwork.original_place.title }}</a>
-                                        {% else %}
-                                        {{ artwork.original_place.title }}
-                                        {% endif %}
-                                    {% else %} 
-                                    Original Destination: <span class="boldTxt">n/a </span>
-                                    {% endif%}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    {% if artwork.current_place %}
-                                    Current Location:
-                                        {% if artwork.current_place.get_valid_point %}
-                                        <a class="hlink preview" rel="{% url map %}" href="{% place_map artwork.current_place.get_valid_point %}">{{ artwork.current_place.title }}</a>
-                                        {% else %}
-                                        {{ artwork.current_place.title }}
-                                        {% endif %}
-                                    {% else %} 
-                                    Current Location: <span class="boldTxt">n/a</span>
-                                    {% endif%}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    {% if artwork.serie.id %} 
-                                    It belongs to series: <a class="hlink" href="{% url series_record artwork.serie.id %}">{{ artwork.serie }} </a>
-                                    {% else %} 
-                                    It belongs to series: <span class="boldTxt">None</span>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <div class="pvspace" style="height: 20px; width: 100%;">
+                            </div>
+<!--Dated In-->
+                            <div class="dl-horizontal">
+                            {% if artwork.creation_year_start and artwork.creation_year_end %} 
+                                <dt>Dated In:</dt> 
+                                <dd>{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}</dd>
+                            {% else %} 
+                                <dt>Dated In:</dt> 
+                                <dd>n/a</dd>
+                            {% endif%}
+                            </div>
+<!--Original Location-->
+                            <div class="dl-horizontal">
+                            {% if artwork.original_place %} 
+                                <dt>Original Location:</dt>
+                            {% if artwork.original_place.get_valid_point %}
+                                <dd><a rel="{% url map %}" href="{% place_map artwork.original_place.get_valid_point %}">{{ artwork.original_place.title }}</a></dd>
+                            {% else %}
+                                {{ artwork.original_place.title }}
+                            {% endif %}
+                            {% else %} 
+                                <dt>Original Destination:</dt> 
+                                <dd>n/a</dd>
+                            {% endif%}
+                            </div>
+<!--Current Location-->
+                            <div class="dl-horizontal">
+                            {% if artwork.current_place %}
+                                <dt>Current Location:</dt>
+                            {% if artwork.current_place.get_valid_point %}
+                                <dd><a rel="{% url map %}" href="{% place_map artwork.current_place.get_valid_point %}">{{ artwork.current_place.title }}</a></dd>
+                            {% else %}
+                                {{ artwork.current_place.title }}
+                            {% endif %}
+                            {% else %} 
+                                <dt>Current Location:<dt>
+                                <dd>n/a</dd>
+                            {% endif%}
+                            </div>
+<!--Series-->
+                            <div class="dl-horizontal">
+                            {% if artwork.serie.id %} 
+                                <dt>It belongs to series:</dt> 
+                                <dd><a href="{% url series_record artwork.serie.id %}">{{ artwork.serie }} </a></dd>
+                            {% else %} 
+                                <dt>Series:</dt> 
+                                <dd>None</dd>
+                            {% endif %}
+                            </div>
+        </div>
+    </div>
+    <div class="row-fluid gendescription">
+        <div class="span12">
+<!--General Description-->
+                        <div>
+                            <p><strong>General Description</strong></p>
                         </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <div class="pvcolumn_header">
-                            General Description
+                        <div>
+                            <p>{% for d in descriptor %}
+                                {% if d.value %}
+                                    {{ d.descriptor.path }}: {{ d.value }} {% if not forloop.last %}<br/>{% endif %}
+                                {% else %}
+                                    {{ d.descriptor.path }} {% if not forloop.last %}<br/>{% endif %}
+                            {% endif %}
+                            {% endfor %}</p>
                         </div>
-                        <div id="pvcolumn_body" style="padding: 6px;">
-                                {% for d in descriptor %}
-                                    {% if d.value %}
-									{{ d.descriptor.path }}: {{ d.value }} {% if not forloop.last %}<br/>{% endif %}
-									{% else %}
-									{{ d.descriptor.path }} {% if not forloop.last %}<br/>{% endif %}
-									{% endif %}
-								{% endfor %}
-
-                            </ul>
-                            <br/>
-                        </div>
-                    </td>
-                </tr>
-            </table>
         </div>
     </div>
 </div>
+
 {% endblock %}

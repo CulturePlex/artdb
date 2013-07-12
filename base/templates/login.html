@@ -1,0 +1,47 @@
+{% extends "pv_home.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "Login" %}{% endblock %}
+
+{% block main_body %}
+
+<div class="container-fluid">
+
+        <div class="fluid row well" >
+            <div class="span10">
+                <h4>Member login</h4>
+                    <form action="{% url admin:index %}" method="post" class="form-horizontal">
+                        {% csrf_token %}
+                        <input type="hidden" name="this_is_the_login_form" value="1"/> 
+                        <div class="control-group">
+                                 <label class="control-label" for="username" id="uname">
+                                    Username
+                                 </label>
+                        <div class="controls">
+                                <input name="username" id="username" type="text" value="" placeholder="Username"/>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="password">
+                                Password
+                            </label>
+                            <div class="controls">
+                            <input name="password" id="password" type="password" value="" placeholder="Password"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <label for="remember" id="remlabel" class="checkbox">
+                                    <input type="checkbox">Remember me
+                                </label><p></p>
+                                <button type="submit" class="btn">Sign in</button>
+                                <p></p>
+                                <p>Not a member yet? Registration soon available.</a></p>
+                                </div>
+                            </div>
+            </div>
+        </div>
+
+</div>
+
+{% endblock %}

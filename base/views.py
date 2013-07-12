@@ -103,3 +103,18 @@ def search(request):
         search_url = request.build_absolute_uri()
     return render_to_response('search_table.html',
                     {"results": results, "type": type_param, "search_url": search_url}, context_instance=RequestContext(request))
+
+def contact(request):
+    return render_to_response('contact.html',
+    {}
+    )
+
+def about(request):
+    return render_to_response('about.html',
+    {}
+    )
+
+def login(request):
+    return render_to_response('login.html',
+    {}
+    )

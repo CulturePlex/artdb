@@ -1,4 +1,4 @@
-{% extends "pvbase.html" %}
+{% extends "pv_home.html" %}
 {% load i18n %}
 
 {% block more_scripts %}
@@ -19,84 +19,76 @@
 
 {% block title %}{% trans "Series" %}{% endblock %}
 
-{% block navigation_bar %}
-<li>
-    <a href="{% url map %}">Map</a>
-</li>
-<li class="current">
-    <a href="{% url series_list %}">Series</a>
-</li>
-<li>
-    <a href="{% url creators_list %}">Creators</a>
-</li>
-<li>
-    <a href="{% url artworks_list %}">Artworks</a>
-</li>
-{% endblock %}
-
 {% block current_crumb %}{% trans "Series" %}{% endblock %}
 
-{% block pv_page_body %}
-<div class="pvtitle">
-    Series
-    <select id="pvsort_select">
-        <option value="title">Title</option>
-        {% if order == "no_of_artworks" %}<option value="no_of_artworks" selected='true'>Number of Artworks</option>
-        {% else %}<option value="no_of_artworks">Number of Artworks</option>
-        {% endif %}
-    </select>
-    <span id="pvsort_span">Sort By:</span>
-</div>
+{% block main_body %}
+<div class="container-fluid">
 
-<div class="pvcolorspace" style="background-color: #ffffff;">
-</div>
-<div id="pvtable_div">
-	<table id="pvobject_list" cellpadding="5px">
-    	<thead>
-        	<tr>
-            	<td>
-                	Title
-                </td>
-                <td align="center" style="padding:0;">
-                	Number of Artworks
+<div class="row-fluid series">
+    <div class="page-header">
+        <div class="span4">
+            <h2>Series</h2>
+        </div>
+        <div class="span8 order-series">
+            <form class="form-inline">
+                <label>Order by &nbsp;</label>
+                <select class="span2">
+                    <option value="title">Title</option>
+                    {% if order == "no_of_artworks" %}
+                        <option value="no_of_artworks" selected='true'>Number of Artworks</option>
+                    {% else %}
+                        <option value="no_of_artworks">Number of Artworks</option>
+                    {% endif %}
+                </select>
+            </form>
+        </div>
+
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <td>Title</td>
+                <td>
+                    Number of Artworks
                 </td>
             </tr>
         </thead>
-		<tbody>
+
+        <tbody>
         	{% for serie in series.object_list %}
-            <tr class="{% cycle 'pvtr_odd' 'pvtr_even' %}" onmouseover="this.className='pvtr_highlight'" onmouseout="this.className={% cycle '\'pvtr_odd\'' '\'pvtr_even\'' %}">
-            	<td width="80%">
-                	<a class="pvtd_a" href="{% url series_record serie.id %}">{{ serie.title }}</a>
+            <tr>
+                <td>
+                    <a href="{% url series_record serie.id %}">{{ serie.title }}</a>
                 </td>
-				<td align="center" style="padding:0;">
+				<td>
 					{{ serie.artwork_set.count }}
 				</td>
 			</tr>
             {% endfor %}
         </tbody>
-	</table>
-	<div class="pvspace" style="height: 10px;">
-    </div>
-    <div class="pvpagination">
-    	<a id="first" href="?orderby={{ order }}&page=1">First</a>
-		<<
-        {% if series.has_previous %}
-		<a href="?orderby={{ order }}&page={{ series.previous_page_number }}">Previous</a>
-		{% else %}
-		<span style="color: #acb19e"> Previous </span>
-		{% endif %}
-		<span class="current">
-		<< Page {{ series.number }} of {{ series.paginator.num_pages }} >>
-		</span>
-		{% if series.has_next %}
-		<a href="?orderby={{ order }}&page={{ series.next_page_number }}">Next</a>
-		{% else %}
-		<span style="color: #acb19e"> Next </span>
-		{% endif %}
-		>>
-		<a href="?orderby={{ order }}&page={{ series.paginator.num_pages }}">Last</a>
-	</div>
-	<div class="pvspace" style="height: 10px;">
+    </table>
+
+<!--PAGINATION-->
+
+    <div class="pagination pagination-centered">
+        <a id="first" href="?orderby={{ order }}&page=1"><span class="first-last">First</span></a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    {% if series.has_previous %}
+        <a href="?orderby={{ order }}&page={{ series.previous_page_number }}"><span class="badge badge-info">Previous</a>
+    {% else %}
+        <span class="badge badge-info"> Previous </span>
+    {% endif %}
+    &nbsp;
+        <span class="current">
+            Page {{ series.number }} of {{ series.paginator.num_pages }}
+        </span>
+    &nbsp;
+    {% if series.has_next %}
+        <a href="?orderby={{ order }}&page={{ series.next_page_number }}"><span class="badge badge-info">Next</span></a>
+    {% else %}
+        <span class="badge badge-info">Next</span>
+    {% endif %}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="?orderby={{ order }}&page={{ series.paginator.num_pages }}"><span class="first-last">Last</span></a>
     </div>
 </div>
 {% endblock %}

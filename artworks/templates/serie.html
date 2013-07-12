@@ -1,4 +1,4 @@
-{% extends "pvbase.html" %}
+{% extends "pv_home.html" %}
 {% load i18n %}
 {% load convert_tags %}
 
@@ -29,107 +29,92 @@
 
 {% block title %}{% trans "Serie" %}{% endblock %}
 
-{% block navigation_bar %}
-<li>
-    <a href="{% url map %}">Map</a>
-</li>
-<li class="current">
-    <a href="{% url series_list %}">Series</a>
-</li>
-<li>
-    <a href="{% url creators_list %}">Creators</a>
-</li>
-<li>
-    <a href="{% url artworks_list %}">Artworks</a>
-</li>
-
-{% endblock %}
-
 {% block current_crumb %}{{ serie.title }}{% endblock %}
 
-{% block pv_page_body %}
-<div class="pvtitle">
-    {{ serie.title }}
+{% block main_body %}
+<div class="container">
+<div class="page-header">
+    <h2>{{ serie.title }}</h2>
 </div>
-<div class="pvcolorspace" style="background-color: #ffffff;">
+
+<div class="row-fluid">
+    <div class="span12">
+<!--    Need to make a loop one for singular and one for plural-->
+        <em>This serie has {{ serie.artwork_set.count }} artworks.</em>
+    </div>
+<div class="row-fluid">
+    <div class="8">
+        <table class="table">
+            <thead>
+                <tr>
+                    <td>Title</td>
+                    <td>Creator</td>
+                    <td>Date</td>
+                    <td>Current Location</td>
+                </tr>
+            </thead>
+
+            <tbody>
+            {% for artwork in artworks.object_list %}
+                <tr>
+                    <td>
+                        <a href="{% url artworks_record artwork.id %}">{{ artwork.title }}</a>
+                    </td>
+                    <td>
+                    {% for creator in artwork.creators.all %} 
+                        {{ creator.name }} 
+                    {% endfor %}
+                    </td>
+                    <td>
+                        {{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}
+                    </td>
+                    <td>
+                        {{  artwork.current_place.title }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+<!--PAGINATION-->
+<div class="pagination">   
+    {% if artworks.paginator.num_pages == 1 %}            	
+        <span class="first-last"> First </span>
+    {% else %}
+        <a id="first" href="?page=1" class="first-last">First</a>
+	{% endif %}
+    &nbsp;&nbsp;
+    {% if artworks.has_previous %}
+        <a href="?page={{ artworks.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
+    {% else %}
+        <span class="badge badge-info"> Previous </span>
+    {% endif %}
+        <span class="current">
+        &nbsp;&nbsp;Page {{ artworks.number }} of {{ artworks.paginator.num_pages }}&nbsp;&nbsp;
+        </span>
+    {% if artworks.has_next %}
+        <a href="?page={{ artworks.next_page_number }}"><span class="badge badge-info">Next</span></a>
+    {% else %}
+        <span class="badge badge-info"> Next </span>
+    {% endif %}
+    &nbsp;&nbsp;
+    {% if artworks.paginator.num_pages == 1 %}
+        <span class="first-last"> Last </span>
+    {% else %}
+        <a href="?page={{ artworks.paginator.num_pages }}"><span class="first-last">Last</span></a>
+    {% endif %}
 </div>
-<div id="secWrapper">
-    <div id="wrapper">
-        <div id="container">   
-			<div id="serie_div">This serie has {{ serie.artwork_set.count }} artworks.</div>     	
-			<table>
-				<tr>
-					<td style="vertical-align:top; padding-top: 10px;">
-        				<div id="pvtable_div" style="width:100%;">
-                			<table id="pvobject_list" cellpadding="5px">
-                    			<thead>
-                        			<tr>
-                            			<td>Title</td>
-                            			<td>Creator</td>
-                            			<td>Date</td>
-                            			<td>Current Location</td>
-                        			</tr>
-                    			</thead>
-                    			<tbody>
-                        			{% for artwork in artworks.object_list %}
-                        			<tr class="{% cycle 'pvtr_odd' 'pvtr_even' %}" onmouseover="this.className='pvtr_highlight'" onmouseout="this.className={% cycle '\'pvtr_odd\'' '\'pvtr_even\'' %}">
-                            			<td width="30%">
-                                			<a class="pvtd_a" href="{% url artworks_record artwork.id %}">{{ artwork.title }}</a>
-                            			</td>
-                            			<td width="25%">
-                                		{% for creator in artwork.creators.all %} 
-                                			{{ creator.name }} 
-                                		{% endfor %}
-                            			</td>
-                            			<td width="15%">
-                                			{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}
-                            			</td>
-                            			<td width="30%">
-                                			{{  artwork.current_place.title }}
-                            			</td>
-                        			</tr>
-                        			{% endfor %}
-                    			</tbody>
-			                </table>
-						<div class="pvspace" style="height: 10px; width: 100%;">
-					</div>
-                	<div class="pvpagination">   
-						{% if artworks.paginator.num_pages == 1 %}            	
-                       		<span style="color: #acb19e"> First </span>
-						{% else %}
-						    <a id="first" href="?page=1">First</a>
-						{% endif %}
-						<<
-                    	{% if artworks.has_previous %}
-							<a href="?page={{ artworks.previous_page_number }}">Previous</a>
-						{% else %}
-						    <span style="color: #acb19e"> Previous </span>
-						{% endif %}
-						<span class="current">
-						  << Page {{ artworks.number }} of {{ artworks.paginator.num_pages }} >>
-						</span>
-						{% if artworks.has_next %}
-							<a href="?page={{ artworks.next_page_number }}">Next</a>
-						{% else %}
-						    <span style="color: #acb19e"> Next </span>
-						{% endif %}
-						>>
-						{% if artworks.paginator.num_pages == 1 %}            	
-                       		<span style="color: #acb19e"> Last </span>
-						{% else %}
-						    <a href="?page={{ artworks.paginator.num_pages }}">Last</a>
-						{% endif %}						
-                	</div>
-					<div class="pvspace" style="height: 10px; width: 100%;">
-        			</div>
-    			</div>
-			</td>
+</div>
+</td>
+
+<div class="span4">
 			<td style="width:30%; vertical-align: top; padding: 10px 0 0 30px; ">
 				<div class="img_artwork" align="center">
 					{% for artwork in artworks.object_list %}
 						{% if artwork.images.count != 0 %}
-                            {% for artImg in artwork.images.all %}							
-								{% if artImg.url %}					
+                            {% for artImg in artwork.images.all%}
+								{% if artImg.url %}
 									{% thumbnail artImg.url "215x175,crop" %}
 								{% else %}
 									{% if artImg.image %}
@@ -142,11 +127,13 @@
 						{% else %}
 							{% thumbnail "img/Unavailable.gif" "215x175,crop" %}
 						{% endif %}
-					{% endfor %}	
+					{% endfor %}
                  </div>
 			</td>
+		</div>
 		</tr>
 	</table>
+</div>
 </div>
 </div>
 </div>

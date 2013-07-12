@@ -1,5 +1,281 @@
 /* Globals */
 
+body {
+    padding-bottom: 40px;
+    background-color:;
+    color:;
+}
+
+ /* Carousel base class */
+
+.carousel{
+    background-color: #8ACA8C;
+}
+
+.carousel_artwork {
+    margin-top: 50px;
+}
+
+.carousel_words {
+    margin-top: 0px;
+}
+
+.carousel_words2 {
+    margin-top: 30px;
+}
+
+    .carousel {
+      margin-top: 30px;
+      margin-bottom: 10px;
+    }
+
+    .carousel .container {
+      position: relative;
+      z-index: 9;
+    }
+
+/*    .carousel-control {*/
+/*      height: 80px;*/
+/*      margin-top: 0;*/
+/*      font-size: 120px;*/
+/*      text-shadow: 0 1px 1px rgba(0,0,0,.4);*/
+/*      background-color: transparent;*/
+/*      border: 0;*/
+/*      z-index: 10;*/
+/*    }*/
+
+    .carousel .item {
+      height: 350px;
+    }
+    .carousel img {
+      position: left;
+      top: 0;
+      left: 0;
+      min-width: 0%;
+      height: 200px;
+    }
+
+    .carousel-caption {
+      background-color: transparent;
+      position: static;
+      max-width: 550px;
+      padding: 0 20px;
+      margin: 0 auto;
+      margin-top: 80px;
+      text-align: center;
+    }
+    .carousel-caption h1,
+    .carousel-caption .lead {
+      margin: 0;
+      line-height: 1.25;
+      color: black;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+    .carousel-caption .btn {
+      margin-top: 10px;
+    }   
+
+ @media (max-width: 979px) {
+
+      .carousel .item {
+        height: 500px;
+      }
+      .carousel img {
+        width: auto;
+        height: 100px;
+      }
+
+    }
+
+
+    @media (max-width: 767px) {
+
+      .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+      .carousel .container {
+
+      }
+      .carousel .item {
+        height: 300px;
+      }
+      .carousel img {
+        height: 300px;
+      }
+      .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+      }
+      .carousel-caption h1 {
+        font-size: 30px;
+      }
+      .carousel-caption .lead,
+      .carousel-caption .btn {
+        font-size: 18px;
+      }
+
+    }
+
+
+
+.well {
+    background-color:;
+}
+
+.navbar {
+    color:;
+}
+
+a {
+    color: #;
+}
+
+a:hover {
+    color:#;
+}
+
+.btn-info {
+    background-color: ;
+}
+
+.logo {
+width: 40%;
+height: 15%;
+margin-bottom: 20px;
+}
+
+.feature_artist {
+    margin-top: 50px;
+}
+
+thead {
+    font-weight: bold;
+}
+
+.feature-artist {
+    text-indent:20px;
+}
+
+.creator {
+    margin-bottom: 20px;
+}
+
+.order-creator{
+    margin-top: 10px;
+}
+
+.artworks {
+    margin-bottom: 20px;
+}
+
+.order-artworks {
+    margin-top: 10px;
+}
+
+.series {
+    margin-bottom: 20px;
+}
+
+.order-series {
+    margin-top: 10px;
+}
+
+ /* Wrapper for page content to push down footer */
+      #wrap {
+        min-height: 100%;
+        height: auto !important;
+        height: 100%;
+        /* Negative indent footer by it's height */
+        margin: 0 auto -60px;
+      }
+
+.gendescription {
+    margin-top:40px;
+}
+
+      /* Set the fixed height of the footer here */
+      #push,
+      #footer {
+        height: 100px;
+      }
+      #footer {
+        background-color:;
+      }
+
+      /* Lastly, apply responsive CSS fixes as necessary */
+      @media (max-width: 767px) {
+        #footer {
+          margin-left: -20px;
+          margin-right: -20px;
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+      }
+
+.artworks-header {
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.first-last {
+    font-size: small;
+    text-decoration: underline;
+    color: #049cdb;
+}
+
+.input-append {
+    padding-top: 7px;
+}
+
+
+ .jumbotron {
+        margin: 80px 0;
+        text-align: center;
+      }
+      .jumbotron h1 {
+        font-size: 100px;
+        line-height: 1;
+      }
+      .jumbotron .lead {
+        font-size: 24px;
+        line-height: 1.25;
+      }
+      .jumbotron .btn {
+        font-size: 21px;
+        padding: 14px 24px;
+      }
+
+      .marketing {
+        margin: 60px 0;
+      }
+      .marketing p + h4 {
+        margin-top: 28px;
+      } 
+
+ .marketing .span4 {
+      text-align: center;
+    }
+    .marketing h2 {
+      font-weight: normal;
+    }
+    .marketing .span4 p {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+
+ @media (max-width: 767px) {
+
+.marketing .span4 + .span4 {
+        margin-top: 40px;
+      }
+    }
+
+
+
+
+
 v\:* {
     behavior:url(#default#VML);
 }
@@ -9,39 +285,6 @@ html, body {
     width: 100%;
 }
 
-body {
-    margin: 0;
-    padding: 0;
-    color: #444;
-}
-
-table {
-    border-collapse: collapse;
-    width: 100%;
-}
-
-table tr th {
-    border: 1px #ddd;
-}
-
-table tr td {
-    border-color: #ddd;
-    border-style: solid;
-    border-width: 0px 1px 1px 1px;
-}
-
-#wrap {
-    width: 970px;
-    margin: 0 auto;
-    background: #fff;
-    font: 12px/1.6 Arial, sans-serif;
-}
-
-
-#wrap h1 {
-    margin: 5px;
-    border-bottom: 1px solid #ddd;
-}
 
 
 /* Header */
@@ -147,65 +390,3 @@ table tr td {
 }
 
 
-/* Nav */
-
-#nav {
-    padding: 5px 10px;
-    background: #fff;
-}
-
-#nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#nav li {
-    display: inline;
-    margin: 0;
-    padding: 0;
-}
-
-
-/* Main */
-
-#main {
-    float: left;
-    width: 700px;
-    padding: 10px;
-    background: #fff;
-}
-
-h2 {
-    margin: 0 0 1em;
-}
-
-
-/* Sidebar */
-
-#sidebar {
-    float: right;
-    width: 230px;ex
-    padding: 10px;
-    background: #fff;
-}
-
-#searchBox input[type="text"] {
-    border: 1px solid #ddd;
-}
-
-/* Footer */
-
-#footer {
-    clear:both;
-    padding: 5px 10px;
-    background: #fff;
-}
-
-#footer p {
-    margin: 0;
-}
-
-* html #footer {
-    height: 1px;
-}
