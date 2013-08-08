@@ -11,27 +11,27 @@
         
         while (e = r.exec(q)) 
             urlParams[d(e[1])] = d(e[2]);
-			
-		if(urlParams.data){
-			data = urlParams.data;
-			$.get('{% url search_view %}', { data: data }, function(result) {
-					$('#search_table_div').html("");
-					$('#search_table_div').append(result);
-    			});
-		}
+            
+        if(urlParams.data){
+            data = urlParams.data;
+            $.get('{% url search_view %}', { data: data }, function(result) {
+                    $('#search_table_div').html("");
+                    $('#search_table_div').append(result);
+                });
+        }
     };
-	
-	this.callAjax = function(object_name, queryparams, queryVals, operators){
-		$.ajax({
-			    url: '{% url search_view %}',
-    			data: { objectType:object_name, params:queryparams, vals:queryVals, ops:operators },
-    			traditional: true,
-    			success: function(result) {
-					$('#search_table_div').html("");
-					$('#search_table_div').append(result);
-    			}
-			});
-	}
+    
+    this.callAjax = function(object_name, queryparams, queryVals, operators){
+        $.ajax({
+                url: '{% url search_view %}',
+                data: { objectType:object_name, params:queryparams, vals:queryVals, ops:operators },
+                traditional: true,
+                success: function(result) {
+                    $('#search_table_div').html("");
+                    $('#search_table_div').append(result);
+                }
+            });
+    }
 </script>
 {% endblock %}
 
@@ -41,6 +41,9 @@
 
 
 {% block main_body %}
+
+<div class="advance_search">
+
 <div class="lead">
     Advance Search
 </div>
@@ -71,7 +74,6 @@
         <div class="control-group">
             <div class="controls">
                 <select id="op1" class="span1" placeholder="and/or">
-                    <option value="or">and/or</option>
                     <option value="and">and</option>
                     <option value="or">or</option>
                 </select>
@@ -85,9 +87,8 @@
         <div class="control-group">
             <div class="controls">
                 <select class="span1" placeholder="and/or">
-                    <option>and/or</option>
-                    <option>and</option>
-                    <option>or</option>
+                    <option value="and">and</option>
+                    <option value="or">or</option>
                 </select>
                 &nbsp; &nbsp;
                 <input type="text" class="input-medium" placeholder="Search">
@@ -102,6 +103,8 @@
             </div>
         </div>
     </form>
+
+</div>
 
 </div>
 

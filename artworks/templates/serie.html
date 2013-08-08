@@ -27,7 +27,7 @@
 	</script>
 {% endblock %}
 
-{% block title %}{% trans "Serie" %}{% endblock %}
+{% block title %}{% trans "Series" %}{% endblock %}
 
 {% block current_crumb %}{{ serie.title }}{% endblock %}
 
@@ -40,7 +40,7 @@
 <div class="row-fluid">
     <div class="span12">
 <!--    Need to make a loop one for singular and one for plural-->
-        <em>This serie has {{ serie.artwork_set.count }} artworks.</em>
+        <em>This series has {{ serie.artwork_set.count }} artworks.</em>
     </div>
 <div class="row-fluid">
     <div class="8">
@@ -78,7 +78,7 @@
     </div>
 
 <!--PAGINATION-->
-<div class="pagination">   
+<div class="pagination pagination-centered">   
     {% if artworks.paginator.num_pages == 1 %}            	
         <span class="first-last"> First </span>
     {% else %}

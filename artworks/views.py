@@ -16,15 +16,20 @@ def series_list(request):
     orderby = None
     serie_list = None
     orderby = request.GET.get('orderby', None)
-    if orderby is None:
+    if orderby not in ('title', 'no_of_artworks', '-title',
+                       '-no_of_artworks'):
         orderby = 'title'
-    if orderby == 'no_of_artworks':
+    if orderby.endswith('no_of_artworks'):
         params = {
-            'no_of_artwork': Count('artwork'),
+            'no_of_artworks': Count('artwork'),
         }
-        serie_list = Serie.objects.annotate(params).order_by('no_of_artwork')
+        serie_list = Serie.objects.annotate(**params)
     else:
-        serie_list = Serie.objects.order_by(orderby)
+        serie_list = Serie.objects.all()
+    try:
+        serie_list = serie_list.order_by(orderby)
+    except Exception:
+        pass
     paginator = Paginator(serie_list, 10)
     try:
         page = int(request.GET.get('page', '1'))

@@ -2,19 +2,7 @@
 {% load i18n %}
 
 {% block more_scripts %}
-<script type='text/javascript'>
-	this.selectionChanged = function() {
-	$( '#pvsort_select' ).change( function() {
-		orderby = $("#pvsort_select option:selected"); 
-		window.location.href= '{{url}}?orderby=' + orderby.val();
-		});
-	};
 
-// starting the script on page load
-	$(document).ready(function(){
-		selectionChanged();
-	});
-</script>
 {% endblock %}
 
 {% block title %}{% trans "Series" %}{% endblock %}
@@ -29,40 +17,42 @@
         <div class="span4">
             <h2>Series</h2>
         </div>
-        <div class="span8 order-series">
-            <form class="form-inline">
-                <label>Order by &nbsp;</label>
-                <select class="span2">
-                    <option value="title">Title</option>
-                    {% if order == "no_of_artworks" %}
-                        <option value="no_of_artworks" selected='true'>Number of Artworks</option>
-                    {% else %}
-                        <option value="no_of_artworks">Number of Artworks</option>
-                    {% endif %}
-                </select>
-            </form>
-        </div>
+
 
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <td>Title</td>
-                <td>
-                    Number of Artworks
+                <td>Title</a>
+                    <a href="?orderby=title"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-title"><i class="icon-long-arrow-up"></i></a>
+                    <a href="/artworks/series/"><i class="icon-remove"></i></a>
                 </td>
+<!--                Ordering now:  {{ order }}-->
+<!--                {% if order == 'title' %}-->
+<!--                    Next order: '-title'-->
+<!--                {% endif %}-->
+<!--                {% if order == '-title' %}-->
+<!--                    Next order: 'title'-->
+<!--                {% endif %}-->
+                <td>Number of Artworks
+                    <a href="?orderby=no_of_artworks"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-no_of_artworks"><i class="icon-long-arrow-up"></i></a>
+                    <a href="/artworks/series/"><i class="icon-remove"></i></a>
+                </a></td>
+            
             </tr>
         </thead>
 
         <tbody>
-        	{% for serie in series.object_list %}
+            {% for serie in series.object_list %}
             <tr>
                 <td>
                     <a href="{% url series_record serie.id %}">{{ serie.title }}</a>
                 </td>
-				<td>
-					{{ serie.artwork_set.count }}
-				</td>
-			</tr>
+                <td>
+                    {{ serie.artwork_set.count }}
+                </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>
@@ -92,3 +82,17 @@
     </div>
 </div>
 {% endblock %}
+
+<script type='text/javascript'>
+    this.selectionChanged = function() {
+    $( '#pvsort_select' ).change( function() {
+        orderby = $("#pvsort_select option:selected"); 
+        window.location.href= '{{url}}?orderby=' + orderby.val();
+        });
+    };
+
+// starting the script on page load
+    $(document).ready(function(){
+        selectionChanged();
+    });
+</script>

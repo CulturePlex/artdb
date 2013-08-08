@@ -16,16 +16,16 @@ def creator_record(request, creator_id):
     students = Creator.objects.filter(masters=creator_id)
     return render_to_response('creators.html',
                               {"creator": creator, "students": students}, context_instance=RequestContext(request))
-    
-    
+
+
 def creators_list(request):
     orderby = None
     creator_list = None
     orderby = request.GET.get('orderby', None)
     if orderby is None:
         orderby = 'name'
-    if orderby == 'no_of_arts':
-        creator_list = Creator.objects.annotate(no_of_artwork=Count('artwork')).order_by('no_of_artwork')
+    if orderby.endswith('no_of_artworks'):
+        creator_list = Creator.objects.annotate(no_of_artworks=Count('artwork')).order_by(orderby)
     elif orderby == 'activity_start_year':
         creator_list = Creator.objects.order_by('activity_start_year', 'activity_end_year')
     else:
@@ -38,3 +38,18 @@ def creators_list(request):
     creators = paginator.page(page)
     return render_to_response('creators_list.html',
                               {"creators": creators, "order": orderby}, context_instance=RequestContext(request))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

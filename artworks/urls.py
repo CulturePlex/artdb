@@ -7,8 +7,8 @@ urlpatterns = patterns('artworks.views',
     url(r'^$', 'artworks_list', name="artworks_list"),
 
     # Serie
-    url(r'^serie/(?P<serie_id>\d+)/$', 'series_record', name="series_record"),
-    url(r'^serie/$', 'series_list', name="series_list"),
+    url(r'^series/(?P<serie_id>\d+)/$', 'series_record', name="series_record"),
+    url(r'^series/$', 'series_list', name="series_list"),
 
     # Locations
     url(r'^locations/(?P<geospatialreference_id>\d+)/list/$',

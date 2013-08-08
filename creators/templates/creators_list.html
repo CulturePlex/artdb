@@ -2,20 +2,20 @@
 {% load i18n %}
 
 {% block more_scripts %}
-<script type='text/javascript'>
-	this.selectionChanged = function() {
-	$( '#pvsort_select' ).change( function() {
-		orderby = $("#pvsort_select option:selected"); 
-		window.location.href= '{{url}}?orderby=' + orderby.val();
-		});
-	};
+<!--<script type='text/javascript'>-->
+<!--	this.selectionChanged = function() {-->
+<!--	$( '#pvsort_select' ).change( function() {-->
+<!--		orderby = $("#pvsort_select option:selected"); -->
+<!--		window.location.href= '{{url}}?orderby=' + orderby.val();-->
+<!--		});-->
+<!--	};-->
 
-// starting the script on page load
-	$(document).ready(function(){
-		selectionChanged();
-	});
-	
-</script>
+<!--// starting the script on page load-->
+<!--	$(document).ready(function(){-->
+<!--		selectionChanged();-->
+<!--	});-->
+<!--	-->
+<!--</script>-->
 {% endblock %}
 
 {% block title %}{% trans "Creators" %}{% endblock %}
@@ -31,53 +31,40 @@
             <div class="span4">
                 <h2>Creators</h2>
             </div>
-<!--    ORDER BY FORM-->
-            <div class="span8">
-                <form class="form-inline order-creator">
-                    <label>Order by &nbsp;</label>
-                    <select class="span2">
-                        <option value="name" selected='true'>Name</option>
-                    {% if order == "death_year" %}
-                        <option value="death_year" selected='true'>Date</option>
-                    {% else %}
-                        <option value="death_year">Date</option>
-                    {% endif %}
-                    {% if order == "activity_start_year" %}
-                        <option value="activity_start_year" selected='true'>Activity Period</option>
-                    {% else %}
-                        <option value="activity_start_year">Activity Period</option>
-                    {% endif %}
-                    {% if order == "birth_place" %}
-                        <option value="birth_place" selected='true'>Place of Birth</option>
-                    {% else %}
-                        <option value="birth_place">Place of Birth</option>
-                    {% endif %}
-                    {% if order == "death_place" %}
-                        <option value="death_place" selected='true'>Place of Death</option>
-                    {% else %}
-                        <option value="death_place">Place of Death</option>
-                    {% endif %} 
-                    {% if order == "no_of_arts" %}
-                        <option value="no_of_arts" selected='true'>Number of Arts</option>
-                    {% else %}
-                        <option value="no_of_arts">Number of Arts</option>
-                    {% endif %} 
-                    </select>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <div>
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
-                    <td>Name</td>
-                    <td>Date</td>
-                    <td>Activity Period</td>
-                    <td>Place of Birth</td>
-                    <td>Place of Death</td>
-                    <td>Number of Arts</td>
+                    <td>Name
+                    <a href="?orderby=name"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-name"><i class="icon-long-arrow-up"></i></a>
+                    <a href="?orderby=name"><i class="icon-remove"></i></a>
+                    </td>
+                    <td>Deceased
+                    <a href="?orderby=death_year"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-death_year"><i class="icon-long-arrow-up"></i></a>
+                    <a href="?orderby=name"><i class="icon-remove"></i></a>
+                    </td>
+                    <td>Activity Period
+                    <a href="?orderby=activity_start_year"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-activity_start_year"><i class="icon-long-arrow-up"></i></a>
+                    <a href="?orderby=name"><i class="icon-remove"></i></a>
+                    </td>
+                    <td>Place of Birth
+                    <a href="?orderby=birth_place"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-birth_place"><i class="icon-long-arrow-up"></i></a>
+                    <a href="?orderby=name"><i class="icon-remove"></i></a>
+                    </td>
+                    <td>Place of Death
+                    <a href="?orderby=death_place"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-death_place"><i class="icon-long-arrow-up"></i></a>
+                    <a href="?orderby=name"><i class="icon-remove"></i></a>
+                    </td>
+                    <td>Number of <p>Artworks</p>
+                    <a href="?orderby=no_of_artworks"><i class="icon-long-arrow-down"></i></a>
+                    <a href="?orderby=-no_of_artworks"><i class="icon-long-arrow-up"></i></a>
+                    <a href="?orderby=name"><i class="icon-remove"></i></a>
+                    </td>
                 </tr>
             </thead>
             <tbody>
@@ -134,3 +121,6 @@
     </div>
 </div>
 {% endblock %}
+
+<!--javascript-->
+
