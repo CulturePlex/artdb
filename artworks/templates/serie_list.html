@@ -22,22 +22,29 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <td>Title</a>
-                    <a href="?orderby=title"><i class="icon-long-arrow-down"></i></a>
-                    <a href="?orderby=-title"><i class="icon-long-arrow-up"></i></a>
+                <td><a href="?orderby=title" class="order_link">Title</a>
+                {% if order == 'title' %}
+                    <a href="?orderby=-title"><i class="icon-sort-up"></i></a>
                     <a href="/artworks/series/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-title' %}
+                    <a href="?orderby=title"><i class="icon-sort-down"></i></a>
+                    <a href="/artworks/series/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
+
+
                 </td>
-<!--                Ordering now:  {{ order }}-->
-<!--                {% if order == 'title' %}-->
-<!--                    Next order: '-title'-->
-<!--                {% endif %}-->
-<!--                {% if order == '-title' %}-->
-<!--                    Next order: 'title'-->
-<!--                {% endif %}-->
-                <td>Number of Artworks
-                    <a href="?orderby=no_of_artworks"><i class="icon-long-arrow-down"></i></a>
-                    <a href="?orderby=-no_of_artworks"><i class="icon-long-arrow-up"></i></a>
+                <td><a href="?orderby=no_of_artworks" class="order_link">Number of Artworks</a>
+                {% if order == 'no_of_artworks' %}
+                    <a href="?orderby=-no_of_artworks"><i class="icon-sort-up"></i></a>
                     <a href="/artworks/series/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-no_of_artworks' %}
+                    <a href="?orderby=no_of_artworks"><i class="icon-sort-down"></i></a>
+                    <a href="/artworks/series/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
                 </a></td>
             
             </tr>

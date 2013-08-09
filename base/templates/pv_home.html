@@ -7,7 +7,87 @@
 
 {% endblock %}
 
-{% block more_scripts %}{% endblock %}
+{% block extra_scripts %}
+<script type='text/javascript' src='/media/js/jquery.js'></script>
+<script type="text/javascript" src="/media/js/jquery.cycle.all.js"></script>
+</script>
+<!--<script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js">-->
+</script>
+<script type="text/javascript">
+    
+    this.searchClicked = function(){
+        $('#search_button').click(function(){
+            search_data = $('#search_text').val();
+            window.location.href = '{% url search %}?data=' + search_data;
+        });
+    };
+    
+    this.advancedSearch = function(){
+        $('#advanced_search_button').click(function(){
+            window.location.href = '{% url search %}';
+        });
+    };
+    
+    this.initialize_menu = function(div_name){
+        $(div_name).mouseenter(function(){
+            $(div_name).cycle('resume');
+        });
+        
+        $(div_name).mouseleave(function(){
+            $(div_name).cycle('pause');
+        });
+        
+        $(div_name).cycle({
+            fx: 'fade',
+            timeout: '500' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+        });
+        
+        $(div_name).cycle('pause');
+    }
+    
+    this.link_menu = function(){
+        $('.ss_artwork').click(function(){
+            window.location.href = '{% url artworks_list %}';
+        });
+        $('.ss_creator').click(function(){
+            window.location.href = '{% url creators_list %}';
+        });
+        $('.ss_series').click(function(){
+            window.location.href = '{% url series_list %}';
+        });
+        $('.ss_search').click(function(){
+            window.location.href = '{% url map %}';
+        });
+    }
+    
+    initialize_artist = function(){
+        $('#work_history').mouseenter(function(){
+            $('#work_history').cycle('pause');
+        });
+        
+        $('#work_history').mouseleave(function(){
+            $('#work_history').cycle('resume');
+        });
+        
+        $('#work_history').cycle({
+            fx: 'fade',
+            timeout: '500' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+        });
+        
+    }
+    
+    $(document).ready(function(){
+        initialize_menu('.ss_artwork');
+        initialize_menu('.ss_creator');
+        initialize_menu('.ss_series');
+        initialize_menu('.ss_search');
+        link_menu();
+        searchClicked();
+        advancedSearch();
+        initialize_artist();
+    });
+</script>
+{% endblock %}
 
 <!--TITLE-->
 {% block title %}{% trans "Home" %}{% endblock %}
@@ -27,22 +107,11 @@
             <a class="brand" href="{% url public_view %}">{{ PROJECT_NAME }}</a>
             <div class="nav-collapse collapse">
               <ul class="nav">
-<!--                <li><a href="{% url public_view %}">Home</a></li>-->
-<!--                <li><a href="#about">About</a></li>-->
-<!--                <li><a href="#contact">Contact</a></li>-->
                 <li><a href="{% url creators_list %}">Creator</a></li>
                 <li><a href="{% url artworks_list %}">Artwork</a></li>
                 <li><a href="{% url series_list %}">Series</a></li>
                 <li><a href="{% url map %}">Map</a></li>
                 <li><a href="{% url login %}">Login</a></li>
-<!--                <li class="dropdown">-->
-<!--                    <a class="dropdown-toggle" data-toggle="dropdown">Menu<b class="caret"></b></a>-->
-<!--                    <ul class="dropdown-menu">-->
-<!--                        <li><a href="{% url creators_list %}">Creator</a></li>-->
-<!--                        <li><a href="{% url artworks_list %}">Artwork</a></li>-->
-<!--                        <li><a href="{% url series_list %}">Series</a></li>-->
-<!--                        <li><a href="{% url map %}">Map </a></li>-->
-<!--                    </ul>-->
               </ul>
               <ul class="nav pull-right">
                 <li><a href="{% url search %}">Advance Search</a></li>
@@ -57,14 +126,6 @@
 
       </div>
     </div>
-
-<!--<div class="breadcrumb">-->
-<!--    {% for b in request.breadcrumbs %}-->
-<!--        <li><a href="{{ b.url }}">{{ b.name }}</a> <span class="divider">/</span></li>-->
-<!--    {% endfor %}-->
-<!--    {% block current_crumb %}{% endblock %}-->
-<!--</div>-->
-
 
 <div class="container fluid">
 
@@ -242,7 +303,7 @@
     <div id="footer">
       <div class="container">
         <p class="muted credit">
-            <span class="pull-right">&copy; CulturePlex</span>
+            <span class="pull-right">&copy; CulturePlex Lab</span>
         <a href="http://www.cultureplex.ca/" target="blank">CulturePlex.ca</a>
         &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; <a href="{% url contact %}">Contact Us</a>
         &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="{% url about %}">About Us</a>
@@ -255,7 +316,7 @@
 {% endblock %}
 
 <!--javascript-->
-<script type="text/javascript" src="/media/django_descriptors/js/jquery.js">
+<script type="text/javascript" src="/media/js/jquery.js">
 </script>
 
 <script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js">

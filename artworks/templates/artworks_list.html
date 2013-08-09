@@ -69,30 +69,60 @@
     <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <td>Title
-                <a href="?orderby=title"><i class="icon-long-arrow-down"></i></a>
-                <a href="?orderby=-title"><i class="icon-long-arrow-up"></i></a>
-                <a href="?orderby=title"><i class="icon-remove"></i></a>
+                <td><a href="?orderby=title" class="order_link">Title</a>
+                {% if order == 'title' %}
+                    <a href="?orderby=-title"><i class="icon-sort-up"></i></a>
+                    <a href="/artworks/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-title' %}
+                <a href="?orderby=title"><i class="icon-sort-down"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
                 </td>
-                <td>Creator
-                <a href="?orderby=creators"><i class="icon-long-arrow-down"></i></a>
-                <a href="?orderby=-creators"><i class="icon-long-arrow-up"></i></a>
-                <a href="?orderby=title"><i class="icon-remove"></i></a>
+                <td><a href="?orderby=creators" class="order_link">Creator</a>
+                {% if order == 'creators' %}
+                <a href="?orderby=-creators"><i class="icon-sort-up"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-creators' %}
+                <a href="?orderby=creators"><i class="icon-sort-down"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
                 </td>
-                <td>Date
-                <a href="?orderby=creation_year_start"><i class="icon-long-arrow-down"></i></a>
-                <a href="?orderby=-creation_year_start"><i class="icon-long-arrow-up"></i></a>
-                <a href="?orderby=title"><i class="icon-remove"></i></a>
+                <td><a href="?orderby=creation_year_start" class="order_link">Date</a>
+                {% if order == 'creation_year_start' %}
+                <a href="?orderby=-creation_year_start"><i class="icon-sort-up"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-creation_year_start' %}
+                <a href="?orderby=creation_year_start"><i class="icon-sort-down"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
                 </td>
-                <td>Original Location
-                <a href="?orderby=original_place"><i class="icon-long-arrow-down"></i></a>
-                <a href="?orderby=-original_place"><i class="icon-long-arrow-up"></i></a>
-                <a href="?orderby=title"><i class="icon-remove"></i></a>
+                <td><a href="?orderby=original_place" class="order_link">Original Location</a>
+                {% if order == 'original_place' %}
+                <a href="?orderby=-original_place"><i class="icon-sort-up"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-original_place' %}
+                <a href="?orderby=original_place"><i class="icon-sort-down"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
                 </td>
-                <td>Current Location
-                <a href="?orderby=current_place"><i class="icon-long-arrow-down"></i></a>
-                <a href="?orderby=-current_place"><i class="icon-long-arrow-up"></i></a>
-                <a href="?orderby=title"><i class="icon-remove"></i></a>
+                <td><a href="?orderby=current_place" class="order_link">Current Location</a>
+                {% if order == 'current_place' %}
+                <a href="?orderby=-current_place"><i class="icon-sort-up"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                {% else %}
+                    {% if order == '-current_place' %}
+                <a href="?orderby=current_place"><i class="icon-sort-down"></i></a>
+                <a href="/artworks/"><i class="icon-remove"></i></a>
+                    {% endif %}
+                {% endif %}
                 </td>
             </tr>
         </thead>

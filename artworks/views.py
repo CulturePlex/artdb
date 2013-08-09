@@ -13,13 +13,12 @@ from base.models import GeospatialReference
 
 
 def series_list(request):
-    orderby = None
     serie_list = None
     orderby = request.GET.get('orderby', None)
-    if orderby not in ('title', 'no_of_artworks', '-title',
-                       '-no_of_artworks'):
+    if orderby and orderby not in ('title', 'no_of_artworks', '-title',
+                                    '-no_of_artworks'):
         orderby = 'title'
-    if orderby.endswith('no_of_artworks'):
+    if orderby and orderby.endswith('no_of_artworks'):
         params = {
             'no_of_artworks': Count('artwork'),
         }
@@ -60,16 +59,16 @@ def series_record(request, serie_id):
 
 
 def artworks_list(request):
-    orderby = None
     artwork_list = None
     orderby = request.GET.get('orderby', None)
-    if orderby is None:
-        orderby = 'title'
-    if orderby == 'creation_year_start':
-        artwork_list = Artwork.objects.order_by('creation_year_start',
-                                                'creation_year_end')
+    if orderby is not None:
+        if orderby == 'creation_year_start':
+            artwork_list = Artwork.objects.order_by('creation_year_start',
+                                                    'creation_year_end')
+        else:
+            artwork_list = Artwork.objects.order_by(orderby)
     else:
-        artwork_list = Artwork.objects.order_by(orderby)
+        artwork_list = Artwork.objects.all()
     paginator = Paginator(artwork_list, 10)
     try:
         page = int(request.GET.get('page', '1'))

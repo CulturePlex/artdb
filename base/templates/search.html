@@ -1,7 +1,7 @@
 {% extends "pv_home.html" %}
 {% load i18n %}
 
-{% block more_scripts %}
+{% block extra_scripts %}
 <script type="text/javascript" src="/media/js/search.js"></script>
 <script type="text/javascript">
     this.loadTable = function(){
@@ -37,75 +37,67 @@
 
 {% block title %}{% trans "Search" %}{% endblock %}
 
-{% block current_crumb %}{% trans "Search" %}{% endblock %}
-
-
 {% block main_body %}
-
-<div class="advance_search">
-
 <div class="lead">
-    Advance Search
+    Search
 </div>
 
-<div class="container-fluid">
 
-    <form class="form-horizontal">
+<!--<div id="secWrapper">-->
+<!--    <div id="wrapper">-->
+<div id="container-fluid" >
+<!--            <div align="center" style="padding-right: 20px;">-->
+    <div class="form-horizontal">
         <div class="control-group">
-            <label class="control-label" for="select">Choose topic:</label>
-            <div class="controls">
-                <select>
-                    <option>Pick one...</option>
-                    <option value="Artworks">Artwork</option>
-                    <option value="Artist">Artist</option>
-                    <option value="Series">Series</option>
-                </select>
-            </div>
+            <label class="control-label">Choose topic:</label>
+                <div id="table_search" class="controls">
+<!--            <span style="position:relative; left: -30px;">Choose the type of data to search in:</span>            -->
+                    <select class="pv_search_select">
+                        <option value=''>Pick ...</option>
+                        <option value="Artwork">Artwork</option>
+                        <option value="Creator">Creator</option>
+                        <option value="Serie">Series</option>
+                    </select>
+                </div>
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" class="input-medium" placeholder="Search">
-                &nbsp; in &nbsp;
-                <select class="span2" id="field1">
-                </select>
-                
-            </div>
+
+                        <input type="text" id="text1" class="text_search" />
+
+                        <p>in</p>
+
+                        <select id="field1" class="search_select"></select>
+
+                            <select id="op1" class="search_select" >
+                                <option value="or">and/or</option>
+                                <option value="and">and</option>
+                                <option value="or">or</option>
+                            </select>
+
+                        <input type="text" id="text2" class="text_search"/>
+
+                        <p>in</p>
+
+                        <select id="field2" class="search_select"></select>
+
+                            <select id="op2" class="search_select"">
+                                <option value="or">and/or</option>
+                                <option value="and">and</option>
+                                <option value="or">or</option>
+                            </select>
+
+                        <input type="text" id="text3" class="text_search"/></td>
+
+                        <p>in</p>
+
+                        <select id="field3" class="search_select"></select>
+                        <input type="button" class="search_fields_button" />
+          </div>
+          </div>
         </div>
-        <div class="control-group">
-            <div class="controls">
-                <select id="op1" class="span1" placeholder="and/or">
-                    <option value="and">and</option>
-                    <option value="or">or</option>
-                </select>
-                &nbsp; &nbsp;
-                <input type="text" class="input-medium" placeholder="Search">
-                &nbsp; in &nbsp;
-                <select class="span2" id="field2">
-                </select>
-            </div>
-        </div>
-        <div class="control-group">
-            <div class="controls">
-                <select class="span1" placeholder="and/or">
-                    <option value="and">and</option>
-                    <option value="or">or</option>
-                </select>
-                &nbsp; &nbsp;
-                <input type="text" class="input-medium" placeholder="Search">
-                &nbsp; in &nbsp;
-                <select class="span2" id="field3">
-                </select>
-            </div>
-        </div>
-        <div>
-            <div class="controls">
-                <button type="submit" class="btn">Search</button>
-            </div>
-        </div>
-    </form>
+    </div>
 
 </div>
 
-</div>
+
 
 {% endblock %}

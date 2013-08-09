@@ -1,8 +1,8 @@
 {% load i18n %}<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--<html xml:lang="es"-->
-<!--      xmlns="http://www.w3.org/1999/xhtml"-->
-<!--      xmlns:v="urn:schemas-microsoft-com:vml"-->
-<!--      version="-//W3C//DTD XHTML 1.0 Strict//EN">-->
+<html xml:lang="es"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:v="urn:schemas-microsoft-com:vml"
+      version="-//W3C//DTD XHTML 1.0 Strict//EN">
 <html>
 
 <head>
@@ -25,19 +25,20 @@
 <!--<link href="//netdna.bootstrapcdn.com/bootswatch/2.3.2/ceruclean/bootstrap.min.css" rel="stylesheet">-->
 
 
-    <!--[if lt IE 7]>
-    <link rel="stylesheet" type="text/css" href="/media/css/iefixes.css" />
-    <![endif]-->
+<!--    <![if lt IE 7]>-->
+<!--    <link rel="stylesheet" type="text/css" href="/media/css/iefixes.css" />-->
+<!--    <![endif]-->
 
 
-<!--<script type='text/javascript'>-->
+<!--<script type="text/javascript" src="/media/js/jquery.js"></script>-->
+<!--<script type="text/javascript">-->
 <!--    this.searchClicked = function(){-->
 <!--        $('#pv_search_button').click(function(){-->
 <!--            search_data = $('#pv_search_text').val();-->
 <!--            window.location.href = '{% url search %}?data='+search_data;-->
 <!--        });-->
 <!--    };-->
-<!--	$(document).ready(function(){-->
+<!--    $(document).ready(function(){-->
 <!--        searchClicked();-->
 <!--    });-->
 <!--</script>-->
@@ -63,29 +64,25 @@
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
-<script>
-if (!window.jQuery) {
-    document.write('<script src="/media/js/jquery-1.7.2.min.js"><\/script>');
-}
-</script>
 
-<script type="text/javascript" src="/django_descriptors/media/django_descriptors/js/jquery.js"></script>
+
+<!--<script type="text/javascript" src="/media/js/jquery.js"></script>-->
 
 <script type="text/javascript" src="/media/js/bootstrap.js"></script>
 
 
 
 
-<!--<script type="text/javascript">-->
-<!--  var _gaq = _gaq || [];-->
-<!--  _gaq.push(['_setAccount', "{{ GOOGLE_ANALYTICS }}"]);-->
-<!--  _gaq.push(['_trackPageview']);-->
-<!--  (function() {-->
-<!--    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;-->
-<!--    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';-->
-<!--    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);-->
-<!--  })();-->
-<!--</script>-->
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', "{{ GOOGLE_ANALYTICS }}"]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
 
 
 
