@@ -117,7 +117,7 @@
                 <li><a href="{% url search %}">Advance Search</a></li>
               </ul>
             <div class="input-append pull-right search_div">
-                <input class="span2" id="search_text" type="text">
+                <input class="span2" id="search_text" type="text" value="{{ data }}">
                 <button class="btn" type="button" id="search_button"><i class="icon-search"></i></button>
             </div>
             </div>
@@ -269,14 +269,14 @@
           <a href="{% url creators_list %}"><img class="img-rounded" src="media/img/artist1.png"></a>
           <a href="{% url creators_list %}"><h2>Creators</h2></a>
           <p>If you have a particular artist in mind, or perhaps want to browse by artists you are able to do that with our database.</p>
-          <br>
+          <br><br>
           <p><a class="btn btn-inverse" href="{% url creators_list %}">View Creators &raquo;</a></p>
         </div>
         <div class="span3">
           <a href="{% url artworks_list %}"><img class="img-rounded" src="media/img/artist2.png"></a>
           <a href="{% url artworks_list %}"><h2>Artworks</h2></a>
           <p>If you're interested in the artworks available, you can see them in the Artworks section.</p>
-          <br><br>  
+          <br><br><br>
           <p><a class="btn btn-inverse" href="{% url artworks_list %}">View Artworks &raquo;</a></p>
         </div>
         <div class="span3">
@@ -290,7 +290,7 @@
           <a href="{% url map %}"><img class="img-rounded" src="media/img/artist4.png"></a>
           <a href="{% url map %}"><h2>Map</h2></a>
           <p>Artworks can also be viewed on an interactive map.</p>
-          <br><br><br>
+          <br><br><br><br>
           <p><a class="btn btn-inverse view_buttons" href="{% url map %}">View Map &raquo;</a></p>
         </div>
       </div>

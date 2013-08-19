@@ -27,6 +27,33 @@
 </tbody>
 </table>
 
+<div class="pagination pagination-centered">   
+    {% if results.paginator.num_pages == 1 %}            	
+        <span class="first-last"> First </span>
+    {% else %}
+        <a id="first" href="?data={{ data }}&page=1" class="first-last">First</a>
+	{% endif %}
+    &nbsp;&nbsp;
+    {% if results.has_previous %}
+        <a href="?data={{ data }}&page={{ results.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
+    {% else %}
+        <span class="badge badge-info"> Previous </span>
+    {% endif %}
+        <span class="current">
+        &nbsp;&nbsp;Page {{ results.number }} of {{ results.paginator.num_pages }}&nbsp;&nbsp;
+        </span>
+    {% if results.has_next %}
+        <a href="?data={{ data }}&page={{ results.next_page_number }}"><span class="badge badge-info">Next</span></a>
+    {% else %}
+        <span class="badge badge-info"> Next </span>
+    {% endif %}
+    &nbsp;&nbsp;
+    {% if results.paginator.num_pages == 1 %}
+        <span class="first-last"> Last </span>
+    {% else %}
+        <a href="?page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
+    {% endif %}
+</div>
 
 </div>
 

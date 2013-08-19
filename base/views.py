@@ -81,10 +81,7 @@ def make_query(object_name, fields, values, operators, page):
             obj = None 
             exec('obj = '+ object_name)
             result = dynamic_query(obj, fields, values, operators)
-    paginator = Paginator(result, 20)
-    results = paginator.page(page)
-    print results.object_list
-    return results
+    return result
 
 def search(request):
     artworks = None
@@ -99,10 +96,11 @@ def search(request):
             query_values = GET.getlist("data")
         page = int(request.GET.get('page', '1'))
         results = make_query(type_param, query_params, query_values, query_ops, page)
+        paginator = Paginator(results, 10)
         #results = {'type': type_param, 'params': query_params}
         search_url = request.build_absolute_uri()
     return render_to_response('search_table.html',
-                    {"results": results, "type": type_param, "search_url": search_url}, context_instance=RequestContext(request))
+                    {"results": paginator.page(page), "paginator": paginator, "type": type_param, "search_url": search_url, "data": " ".join(query_values)}, context_instance=RequestContext(request))
 
 def contact(request):
     return render_to_response('contact.html',
