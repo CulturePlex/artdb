@@ -51,7 +51,7 @@
     {% if results.paginator.num_pages == 1 %}
         <span class="first-last"> Last </span>
     {% else %}
-        <a href="?page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
+        <a href="?data={{ data }}&page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
     {% endif %}
 </div>
 
