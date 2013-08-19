@@ -38,76 +38,71 @@
 {% block title %}{% trans "Search" %}{% endblock %}
 
 {% block main_body %}
+
+
 <div class="lead">
     Search
 </div>
 
-
-<!--<div id="secWrapper">-->
-<!--    <div id="wrapper">-->
-<div id="container-fluid" >
-<!--            <div align="center" style="padding-right: 20px;">-->
-    <div class="form-horizontal">
-        <div class="control-group">
-            <label class="control-label">Choose topic:</label>
-                <div id="table_search" class="controls">
-<!--            <span style="position:relative; left: -30px;">Choose the type of data to search in:</span>            -->
-                    <select class="pv_search_select">
-                        <option value=''>Pick ...</option>
-                        <option value="Artwork">Artwork</option>
-                        <option value="Creator">Creator</option>
-                        <option value="Serie">Series</option>
-                    </select>
+        <div id="container-fluid" >
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label">Choose a topic</label>
+                    <div id="table_search" class="controls">
+                        <select class="pv_search_select">
+                            <option value=''>Pick ...</option>
+                            <option value="Artwork">Artwork</option>
+                            <option value="Creator">Creator</option>
+                            <option value="Serie">Serie</option>
+                        </select>
+                    </div>
                 </div>
-        </div>
-<!--    FIRST SEARCH SECTION-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" id="text1" class="text_search" />
-            in
-                <select id="field1" class="search_select"></select>
-                <select id="op1" class="search_select" >
-                    <option value="or">and/or</option>
-                    <option value="and">and</option>
-                    <option value="or">or</option>
-                </select>
-            </div>
-        </div>
-<!--    SECOND SEARCH SECTION-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" id="text2" class="text_search"/>
-                in
-                <select id="field2" class="search_select"></select>
-                <select id="op2" class="search_select"">
-                    <option value="or">and/or</option>
-                    <option value="and">and</option>
-                    <option value="or">or</option>
-                </select>
-            </div>
-        </div>
-<!--    THIRD SEARCH SECTION-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="text" id="text3" class="text_search"/></td>
-                in
-                <select id="field3" class="search_select"></select>
-            </div>
-        </div>
-<!--    BUTTON-->
-        <div class="control-group">
-            <div class="controls">
-                <input type="button" class="search_fields_button btn" value="Search"/>
-            </div>
-        </div>
-        
-            </div>
-          </div>
-        </div>
+
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="text" id="text1" class="text_search" />
+                            <select id="field1" class="search_select"></select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <select id="op1" class="search_select" style="width:70px;">
+                                <option value="or">and/or</option>
+                                <option value="and">and</option>
+                                <option value="or">or</option>
+                            </select>
+
+                            <input type="text" id="text2" class="text_search"/>
+                            <select id="field2" class="search_select"></select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <select id="op2" class="search_select" style="width:70px;">
+                                <option value="or">and/or</option>
+                                <option value="and">and</option>
+                                <option value="or">or</option>
+                            </select>
+
+                            <input type="text" id="text3" class="text_search"/>
+                            <select id="field3" class="search_select"></select>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <div class="controls">
+                            <input type="button" class="search_fields_button btn" value="Search"/>
+                        </div>
+                    </div>
+
+
+                    <div id="search_table_div" style="width:92%; border: solid 1px #f0f0f0 ;"></div>
+
+
     </div>
-
 </div>
-
-
 
 {% endblock %}
