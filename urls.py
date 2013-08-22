@@ -18,10 +18,6 @@ urlpatterns = patterns('',
     # map
     url(r'^map/$', direct_to_template, {'template': 'map.html'}, name="map"),
 
-    # search
-    url(r'^search/$', direct_to_template, {'template': 'search.html'},
-        name="search"),
-
     # graphs
     # url(r'^graphs/', include('graphs.urls')),
 

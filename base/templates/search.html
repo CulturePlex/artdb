@@ -12,9 +12,9 @@
         while (e = r.exec(q)) 
             urlParams[d(e[1])] = d(e[2]);
             
-        if(urlParams.data){
+        if(urlParams.data || window.location.search){
             data = urlParams.data;
-            $.get('{% url search_view %}', { data: data }, function(result) {
+            $.get('{% url search_results %}'+window.location.search+"&footer={{ footer }}", { data: data }, function(result) {
                     $('#search_table_div').html("");
                     $('#search_table_div').append(result);
                 });
@@ -23,8 +23,8 @@
     
     this.callAjax = function(object_name, queryparams, queryVals, operators){
         $.ajax({
-                url: '{% url search_view %}',
-                data: { objectType:object_name, params:queryparams, vals:queryVals, ops:operators },
+                url: '{% url search_results %}',
+                data: { objectType:object_name, params:queryparams, vals:queryVals, ops:operators, footer:"false" },
                 traditional: true,
                 success: function(result) {
                     $('#search_table_div').html("");

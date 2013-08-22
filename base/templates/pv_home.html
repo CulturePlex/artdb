@@ -18,13 +18,13 @@
     this.searchClicked = function(){
         $('#search_button').click(function(){
             search_data = $('#search_text').val();
-            window.location.href = '{% url search_view %}?data=' + search_data;
+            window.location.href = '{% url search_results %}?data=' + search_data;
         });
     };
     
     this.advancedSearch = function(){
         $('#advanced_search_button').click(function(){
-            window.location.href = '{% url search %}';
+            window.location.href = '{% url advanced_search %}';
         });
     };
     
@@ -95,6 +95,7 @@
 {% block body %}
 
 <!--NAVBAR-->
+
 <div class="containter-fluid">
 
     <div class="navbar-wrapper">
@@ -114,7 +115,7 @@
                 <li><a href="{% url login %}">Login</a></li>
               </ul>
               <ul class="nav pull-right">
-                <li><a href="{% url search %}">Advance Search</a></li>
+                <li><a href="{% url advanced_search %}">Advance Search</a></li>
               </ul>
             <div class="input-append pull-right search_div">
                 <input class="span2" id="search_text" type="text" value="{{ data }}">
@@ -128,6 +129,7 @@
     </div>
 
 <div class="container fluid">
+
 
 {% block main_body %}
 

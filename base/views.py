@@ -1,4 +1,5 @@
 from django.shortcuts import HttpResponse, render_to_response
+from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from artworks.models import Artwork, Serie
 from creators.models import Creator
@@ -83,9 +84,20 @@ def make_query(object_name, fields, values, operators, page):
             result = dynamic_query(obj, fields, values, operators)
     return result
 
-def search(request):
+
+def advanced_search(request):
+    footer = request.GET.get("footer", 'false')
+    print request.GET
+    return render_to_response("search.html",
+        {"advanced": reverse("advanced_search"),
+         "footer": footer},
+         context_instance=RequestContext(request))
+
+
+def search_results(request):
     artworks = None
     query = None
+    template_name = 'search_table.html'
     if request.method == u'GET':
         GET = request.GET
         type_param = GET.get("objectType")
@@ -94,13 +106,24 @@ def search(request):
         query_ops = GET.getlist("ops")
         if type_param is None:
             query_values = GET.getlist("data")
+            search_url = "data=" + " ".join(query_values) # basic has footer
+        else:
+            search_url = "objectType=" + type_param + "&params=" + " ".join(query_params) + "&vals=" + " ".join(query_values) + "&ops=" + " ".join(query_ops)
         page = int(request.GET.get('page', '1'))
         results = make_query(type_param, query_params, query_values, query_ops, page)
         paginator = Paginator(results, 10)
         #results = {'type': type_param, 'params': query_params}
-        search_url = request.build_absolute_uri()
-    return render_to_response('search_table.html',
-                    {"results": paginator.page(page), "paginator": paginator, "type": type_param, "search_url": search_url, "data": " ".join(query_values)}, context_instance=RequestContext(request))
+        footer = request.GET.get("footer", 'true')
+    if footer == "false":
+        template_name = 'search_table_noheaders.html'
+    return render_to_response(template_name,
+        {"results": paginator.page(page),
+         "paginator": paginator,
+         "type": type_param,
+         "search_url": search_url,
+         "data": " ".join(query_values),
+         "footer": footer},
+         context_instance=RequestContext(request))
 
 def contact(request):
     return render_to_response('contact.html',
