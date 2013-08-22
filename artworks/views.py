@@ -15,8 +15,7 @@ from base.models import GeospatialReference
 def series_list(request):
     serie_list = None
     orderby = request.GET.get('orderby', None)
-    if orderby and orderby not in ('title', 'no_of_artworks', '-title',
-                                    '-no_of_artworks'):
+    if orderby is None:
         orderby = 'title'
     if orderby and orderby.endswith('no_of_artworks'):
         params = {
@@ -58,17 +57,37 @@ def series_record(request, serie_id):
                               context_instance=RequestContext(request))
 
 
+#def artworks_list(request):
+#    artwork_list = None
+#    orderby = request.GET.get('orderby', None)
+#    if orderby is not None:
+#        if orderby == 'creation_year_start':
+#            artwork_list = Artwork.objects.order_by('creation_year_start',
+#                                                    'creation_year_end')
+#        else:
+#            artwork_list = Artwork.objects.order_by(orderby)
+#    else:
+#        artwork_list = Artwork.objects.all()
+#    paginator = Paginator(artwork_list, 10)
+#    try:
+#        page = int(request.GET.get('page', '1'))
+#    except ValueError:
+#        page = 1
+#    artworks = paginator.page(page)
+#    return render_to_response('artworks_list.html',
+#                              {"artworks": artworks, "order": orderby},
+#                              context_instance=RequestContext(request))
+
 def artworks_list(request):
     artwork_list = None
     orderby = request.GET.get('orderby', None)
-    if orderby is not None:
-        if orderby == 'creation_year_start':
-            artwork_list = Artwork.objects.order_by('creation_year_start',
-                                                    'creation_year_end')
-        else:
-            artwork_list = Artwork.objects.order_by(orderby)
+    if orderby is None:
+        orderby = 'title'
+    if orderby == 'creation_year_start':
+        artwork_list = Artwork.object.order_by('creation_year_start,'
+                                                'creation_year_end')
     else:
-        artwork_list = Artwork.objects.all()
+        artwork_list = Artwork.objects.order_by(orderby)
     paginator = Paginator(artwork_list, 10)
     try:
         page = int(request.GET.get('page', '1'))
@@ -76,9 +95,8 @@ def artworks_list(request):
         page = 1
     artworks = paginator.page(page)
     return render_to_response('artworks_list.html',
-                              {"artworks": artworks, "order": orderby},
-                              context_instance=RequestContext(request))
-
+                            {"artworks": artworks, "order": orderby},
+                            context_instance=RequestContext(request))
 
 def artworks_record(request, artwork_id):
     request.breadcrumbs('Artworks', reverse('artworks_list'))
