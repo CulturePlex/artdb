@@ -21,8 +21,12 @@ def public_view(request):
         random_creator = Creator.objects.all()[randint(0, num_creator-1)]
     else:
         random_creator = None
+    no_search_box = request.GET.get("no_search", "true")
     return render_to_response('pv_home.html',
-                              {"artwork": random_artwork, "artist": random_creator}, context_instance=RequestContext(request))
+                              {"artwork": random_artwork, 
+                              "artist": random_creator,
+                              "no_search": no_search_box,
+                              }, context_instance=RequestContext(request))
 
 #taken and modified from django snippets
 def dynamic_query(model, fields, values, operator):

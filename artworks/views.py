@@ -84,7 +84,7 @@ def artworks_list(request):
     if orderby is None:
         orderby = 'title'
     if orderby == 'creation_year_start':
-        artwork_list = Artwork.object.order_by('creation_year_start,'
+        artwork_list = Artwork.objects.order_by('creation_year_start',
                                                 'creation_year_end')
     else:
         artwork_list = Artwork.objects.order_by(orderby)
