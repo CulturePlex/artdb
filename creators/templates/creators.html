@@ -73,14 +73,6 @@
                 </div>
             </blockquote>
 
-<!--this is for the General Description textbox which seems to be rendering nothing-->
-<!--<td style="padding: 0 0 0 0px;" align="center">-->
-<!--    <div class="pvcolumn_header" style="width: 275px;">-->
-<!--        General Description-->
-<!--    </div>-->
-<!--    <div id="pvcolumn_body" style="height:100px; width: 275px; background-color: #fff;">-->
-<!--    </div>-->
-<!--</td>-->
 <br/><br/><br/>
 <div class="row-fluid">
     <div class="span6">
@@ -112,8 +104,6 @@
                     {% for master in creator.masters.all %}
                         <tr>
                             <td style="padding-left:10px;">
-    <!--This is the master icon image that can also be used, but it's not very nice-->
-    <!--                            <img src="/media/img/teacher.png" />-->
                                 <span class="label">Master</span>
                                     <a class="pvtd_a" href="{% url creator_record master.id %}">{{ master.name }}</a>
                             </td>
@@ -122,7 +112,6 @@
                     {% for student in students %}
                         <tr>
                             <td style="padding-left:10px;">
-    <!--                            <img src="/media/img/student.png" /> -->
                                 <span class="label label-inverse">Student</span>
                                     <a class="pvtd_a" href="{% url creator_record student.id %}">{{ student.name }}</a>
                             </td>
@@ -135,21 +124,6 @@
 </div>
 </div>
 
-</tr>
-
-
-
-<!--Space for the footer-->
-                <tr>
-                    <td colspan="2" align="center">
-                        <div class="pvspace" style="height: 20px; width: 100%;">
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                   
-                </tr>
-            </table>
         </div>
     </div>
 </div>

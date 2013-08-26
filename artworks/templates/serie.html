@@ -24,7 +24,7 @@
     $(document).ready(function(){ 
         initialize_menu('.img_artwork');
     });
-	</script>
+    </script>
 {% endblock %}
 
 {% block title %}{% trans "Series" %}{% endblock %}
@@ -79,11 +79,11 @@
 
 <!--PAGINATION-->
 <div class="pagination pagination-centered">   
-    {% if artworks.paginator.num_pages == 1 %}            	
+    {% if artworks.paginator.num_pages == 1 %}                
         <span class="first-last"> First </span>
     {% else %}
         <a id="first" href="?page=1" class="first-last">First</a>
-	{% endif %}
+    {% endif %}
     &nbsp;&nbsp;
     {% if artworks.has_previous %}
         <a href="?page={{ artworks.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
@@ -109,30 +109,30 @@
 </td>
 
 <div class="span4">
-			<td style="width:30%; vertical-align: top; padding: 10px 0 0 30px; ">
-				<div class="img_artwork" align="center">
-					{% for artwork in artworks.object_list %}
-						{% if artwork.images.count != 0 %}
+            <td style="width:30%; vertical-align: top; padding: 10px 0 0 30px; ">
+                <div class="img_artwork" align="center">
+                    {% for artwork in artworks.object_list %}
+                        {% if artwork.images.count != 0 %}
                             {% for artImg in artwork.images.all%}
-								{% if artImg.url %}
-									{% thumbnail artImg.url "215x175,crop" %}
-								{% else %}
-									{% if artImg.image %}
-										{% thumbnail artImg.image "190x190,crop" %}
-									{% else %}
-                            			{% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
-                            		{% endif %}
-								{% endif %}
-							{% endfor %} 
-						{% else %}
-							{% thumbnail "img/Unavailable.gif" "215x175,crop" %}
-						{% endif %}
-					{% endfor %}
+                                {% if artImg.url %}
+                                    {% thumbnail artImg.url "215x175,crop" %}
+                                {% else %}
+                                    {% if artImg.image %}
+                                        {% thumbnail artImg.image "190x190,crop" %}
+                                    {% else %}
+                                        {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                    {% endif %}
+                                {% endif %}
+                            {% endfor %} 
+                        {% else %}
+                            {% thumbnail "img/Unavailable.gif" "215x175,crop" %}
+                        {% endif %}
+                    {% endfor %}
                  </div>
-			</td>
-		</div>
-		</tr>
-	</table>
+            </td>
+        </div>
+        </tr>
+    </table>
 </div>
 </div>
 </div>

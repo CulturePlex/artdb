@@ -31,36 +31,7 @@
 <!--    TITLE-->
         <div class="span4">
             <h2>Artworks</h2>
-<!--    ORDER BY-->
         </div>
-<!--        <div class="span8">-->
-<!--            <form class="form-inline order-artworks">-->
-<!--                <label>Order by &nbsp;</label>-->
-<!--                <select class="span3">-->
-<!--                    <option value="title">Title</option>-->
-<!--                    {% if order == "creator" %}-->
-<!--                        <option value="creators__name" selected='true'>Creator</option>-->
-<!--                    {% else %}-->
-<!--                        <option value="creators__name">Creator</option>-->
-<!--                    {% endif %}-->
-<!--                    {% if order == "creation_year_start" %}-->
-<!--                        <option value="creation_year_start" selected='true'>Date</option>-->
-<!--                    {% else %}-->
-<!--                        <option value="creation_year_start">Date</option>-->
-<!--                    {% endif %}-->
-<!--                    {% if order == "original_place" %}-->
-<!--                        <option value="original_place" selected='true'>Original Location</option>-->
-<!--                    {% else %}-->
-<!--                        <option value="original_place">Original Location</option>-->
-<!--                    {% endif %}-->
-<!--                    {% if order == "current_place" %}-->
-<!--                        <option value="current_place" selected='true'>Current Location</option>-->
-<!--                    {% else %}-->
-<!--                        <option value="current_place">Current Location</option>-->
-<!--                    {% endif %} -->
-<!--                </select>-->
-<!--            </form>-->
-<!--        </div>-->
     </div>
 </div>
 
@@ -72,7 +43,6 @@
                 <td><a href="?orderby=title" class="order_link">Title</a>
                 {% if order == 'title' %}
                     <a href="?orderby=-title"><i class="icon-sort-up"></i></a>
-<!--                    <a href="/artworks/"><i class="icon-remove"></i></a>-->
                 {% else %}
                     {% if order == '-title' %}
                 <a href="?orderby=title"><i class="icon-sort-down"></i></a>

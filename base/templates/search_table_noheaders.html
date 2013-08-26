@@ -1,0 +1,61 @@
+{% load i18n %}
+
+{% block main_body %}
+
+<div class="container-fluid">
+
+    <div class="lead">Search Results</div>
+
+<table class="table table-striped table-hover">
+    <tbody>
+    {% for result in results.object_list %}
+        <tr>
+            <td>
+            {% if result.title %}
+                {% if result.creators %}
+                    <a class="pvtd_a" href="{% url artworks_record result.id %}">{{ result.title }}</a>
+                {% else %}
+                    <a class="pvtd_a" href="{% url series_record result.id %}">{{ result.title }}</a>
+                {% endif %}
+            {% endif %}
+            {% if result.name %}
+                <a class="pvtd_a" href="{% url creator_record result.id %}">{{ result.name }}</a>
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+
+<div class="pagination pagination-centered">   
+    {% if results.paginator.num_pages == 1 %}
+        <span class="first-last"> First </span>
+    {% else %}
+        <a id="first" href="?{{ search_url }}{% if footer == false %}&footer=false{% endif %}&page=1" class="first-last">First</a>
+    {% endif %}
+    &nbsp;&nbsp;
+    {% if results.has_previous %}
+        <a href="?{{ search_url }}{% if footer == false  %}&footer=false{% endif %}&page={{ results.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
+    {% else %}
+        <span class="badge badge-info"> Previous </span>
+    {% endif %}
+        <span class="current">
+        &nbsp;&nbsp;Page {{ results.number }} of {{ results.paginator.num_pages }}&nbsp;&nbsp;
+        </span>
+    {% if results.has_next %}
+        <a href="?{{ search_url }}{% if footer == false %}&footer=false{% endif %}&page={{ results.next_page_number }}"><span class="badge badge-info">Next</span></a>
+    {% else %}
+        <span class="badge badge-info"> Next </span>
+    {% endif %}
+    &nbsp;&nbsp;
+    {% if results.paginator.num_pages == 1 %}
+        <span class="first-last"> Last </span>
+    {% else %}
+        <a href="?{{ search_url }}{% if footer %}&footer=false{% endif %}&page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
+    {% endif %}
+</div>
+
+</div>
+
+{% endblock %}
+
