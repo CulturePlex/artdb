@@ -100,22 +100,22 @@
           <div class="navbar-inner">
 
             <a class="brand" href="{% url public_view %}">{{ PROJECT_NAME }}</a>
-            <div class="nav-collapse collapse">
-              <ul class="nav">
-                <li><a href="{% url creators_list %}">Creator</a></li>
-                <li><a href="{% url artworks_list %}">Artwork</a></li>
-                <li><a href="{% url series_list %}">Series</a></li>
-                <li><a href="{% url map %}">Map</a></li>
-                <li><a href="{% url login %}">Login</a></li>
-              </ul>
-              <ul class="nav pull-right">
-                <li><a href="{% url advanced_search %}">Advance Search</a></li>
-              </ul>
-            <div class="input-append pull-right search_div">
-                <input class="span2" id="search_text" type="text" value="{{ data }}">
-                <button class="btn" type="button" id="search_button"><i class="icon-search"></i></button>
-            </div>
-            </div>
+                <div class="nav-collapse collapse">
+                  <ul class="nav">
+                    <li><a href="{% url creators_list %}">Creator</a></li>
+                    <li><a href="{% url artworks_list %}">Artwork</a></li>
+                    <li><a href="{% url series_list %}">Series</a></li>
+                    <li><a href="{% url map %}">Map</a></li>
+                    <li><a href="{% url login %}">Login</a></li>
+                  </ul>
+                  <ul class="nav pull-right">
+                    <li><a href="{% url advanced_search %}">Advance Search</a></li>
+                  </ul>
+                    <div class="input-append pull-right search_div">
+                    <input class="span2" id="search_text" type="text" value="{{ data }}">
+                    <button class="btn" type="button" id="search_button"><i class="icon-search"></i></button>
+                    </div>
+                </div>
           </div>
         </div>
 
