@@ -121,9 +121,8 @@
 
       </div>
     </div>
-
-<div class="container fluid">
-
+ 
+ <div class="container fluid">
 
 {% block main_body %}
 
@@ -137,11 +136,11 @@
   </ol>
 <!--   Carousel items -->
   <div class="carousel-inner">
-    <div class="active item">
+     <div class="active item">
         <div class="container-fluid">
             <div class="carousel-caption">
-                <h1>BaroqueArt</h1>
-                <p class="lead">A database of paintings produced by artists throughout the Hispanic world during the Baroque period. It presents the rich art of the baroque era in various interactive visualizations.</p>
+                  <h1>BaroqueArt</h1>
+                  <p class="lead">A database of paintings produced by artists throughout the Hispanic world during the Baroque period. It presents the rich art of the baroque era in various interactive visualizations.</p>
             </div>
         </div>
     </div>
@@ -151,114 +150,113 @@
             <div class="row-fluid artwork_carousel">
                 <div class="span4 offset1">
                     <div class="carousel_artwork">
-                        <img src="/media/img/arenoir.jpg">
-                            {% if artwork.images.count != 0 %} 
-                            {% for artImg in artwork.images.all %}  
-                                {% if artImg.url %} 
-                                    {% thumbnail artImg.url "190x190,crop" %}
-                                {% else %}
-                                    {% if artImg.image %}
-                                        {% thumbnail artImg.image "190x190,crop" %}
-                                    {% else %} 
-                                        {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
-                                    {% endif %}
-                                {% endif %} 
-                            {% endfor %} 
-                        {% else %}
-                            {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
-                        {% endif %}
+                          <img src="/media/img/arenoir.jpg">
+                              {% if artwork.images.count != 0 %} 
+                              {% for artImg in artwork.images.all %}  
+                                  {% if artImg.url %} 
+                                      {% thumbnail artImg.url "190x190,crop" %}
+                                  {% else %}
+                                      {% if artImg.image %}
+                                          {% thumbnail artImg.image "190x190,crop" %}
+                                      {% else %} 
+                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                      {% endif %}
+                                  {% endif %} 
+                              {% endfor %} 
+                          {% else %}
+                              {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
+                          {% endif %}
                     </div>
-                 </div>
+                </div>
 
                 <h3 class="carousel_words">Featured Artwork</h3>
-                {% if artwork %}
-                <div class="span4 carousel_words">
-                  <p class="lead">{{ artwork.title }}<p>
-                  <blockquote>
-                     <p><strong>Artist: </strong>{% for creator in artwork.creators.all %}<span>{{ creator.name }}</span>
-                     {% endfor %}
-                     {% if artwork.creation_year_start and artwork.creation_year_end %}</p>
-                     <p><strong>Dated In:</strong> <span>{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}</span></p>
-                      {% else %} 
-                      <p><strong>Dated In: </strong><span>n/a</span></p>
-                      {% endif%}
-                      {% if artwork.current_place %} 
-                      <p><strong>Current Location: </strong><span>{{ artwork.current_place.title }}</span></p>
-                      {% else %} 
-                      <p><strong>Current Location: </strong><span>n/a</span>
-                      {% endif%}
-                  </p>
-                  <p><a href="{% url artworks_record artwork.id %}">View More</a>
-                    {% else %}
-                  <span style="">No data available.</span></p>
-                {% endif %}
-                </blockquote>
-              </div>
-          </div>
-      </div>
+                  {% if artwork %}
+                  <div class="span4 carousel_words">
+                    <p class="lead">{{ artwork.title }}</p>
+                    <blockquote>
+                       <p><strong>Artist: </strong>{% for creator in artwork.creators.all %}<span>{{ creator.name }}</span>
+                       {% endfor %}
+                       {% if artwork.creation_year_start and artwork.creation_year_end %}</p>
+                       <p><strong>Dated In:</strong> <span>{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}</span></p>
+                        {% else %} 
+                        <p><strong>Dated In: </strong><span>n/a</span></p>
+                        {% endif%}
+                        {% if artwork.current_place %} 
+                        <p><strong>Current Location: </strong><span>{{ artwork.current_place.title }}</span></p>
+                        {% else %} 
+                        <p><strong>Current Location: </strong><span>n/a</span>
+                        {% endif%}
+                    </p>
+                    <p><a href="{% url artworks_record artwork.id %}">View More</a>
+                      {% else %}
+                    <span style="">No data available.</span></p>
+                  {% endif %}
+                  </blockquote>
+                  </div>
+            </div>
+        </div>
     </div>
 <!--    FEATURED ARTIST-->
     <div class="item">
         <div class="container-fluid">
             <div class="row-fluid artwork_carousel">
                 <div class="span4 offset1">
-                    <div class="carousel_artwork">
-                        <img src="/media/img/arenoir.jpg">
-                        {% for artwork in artist.artwork_set.all %} 
-                            {% if artwork.images.count != 0 %} 
-                                {% for artImg in artwork.images.all %}  
-                                    {% if artImg.url %} 
-                                        {% thumbnail artImg.url "190x190,crop" %}
-                                    {% else %}
-                                    {% if artImg.image %}
-                                        {% thumbnail artImg.image "190x190,crop" %}
-                                    {% else %} 
-                                        {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
-                                    {% endif %}
-                                {% endif %} 
-                            {% endfor %} 
-                        {% else %}
-                            {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
-                        {% endif %}
-                        {% endfor %}
-                    </div>
-                 </div>
+                      <div class="carousel_artwork">
+                          <img src="/media/img/arenoir.jpg">
+                          {% for artwork in artist.artwork_set.all %} 
+                              {% if artwork.images.count != 0 %} 
+                                  {% for artImg in artwork.images.all %}  
+                                      {% if artImg.url %} 
+                                          {% thumbnail artImg.url "190x190,crop" %}
+                                      {% else %}
+                                      {% if artImg.image %}
+                                          {% thumbnail artImg.image "190x190,crop" %}
+                                      {% else %} 
+                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                      {% endif %}
+                                  {% endif %} 
+                              {% endfor %} 
+                          {% else %}
+                              {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
+                          {% endif %}
+                          {% endfor %}
+                      </div>
+                </div>
 
-                <h3 class="carousel_words2">Featured Artist</h3>
-                {% if artist %}
-                <div class="span4 carousel_words2">
-                  <p class="lead">{{ artist.name }}<p>
-                    <blockquote>
-                        <p><strong>Lived: </strong>
-                        {% if artist.birth_year and artist.death_year %} 
-                        <span>{{ artist.birth_year }} - {{ artist.death_year }}</span>
-                    {% else %} <span>n/a</span></p>
-                    {% endif%}
-                    <p><strong>Masters: </strong>{% for master in artist.masters.all %}<span>{{ master.name }}</span></p>
-                    {% if not forloop.last %}
-                    ;
-                    {% endif %}
-                    {% endfor %}
-                    <p><strong>Place of birth: </strong><span>{{ artist.birth_place.title }}</span></p>
-                    <p><strong>Place of death: </strong><span>{{ artist.death_place.title }}</span></p>
-                    <p><a href="{% url creator_record artist.id %}">View More</a></p>
-                    {% else %}
-                    <span style="">No data available.</span></p>
-                    {% endif %}
-                    </blockquote>
-              </div>
-          </div>
-      </div>
+                  <h3 class="carousel_words2">Featured Artist</h3>
+                  {% if artist %}
+                  <div class="span4 carousel_words2">
+                    <p class="lead">{{ artist.name }}</ p>
+                      <blockquote>
+                          <p><strong>Lived: </strong>
+                          {% if artist.birth_year and artist.death_year %} 
+                          <span>{{ artist.birth_year }} - {{ artist.death_year }}</span>
+                      {% else %} <span>n/a</span></p>
+                      {% endif%}
+                      <p><strong>Masters: </strong>{% for master in artist.masters.all %}<span>{{ master.name }}</span></p>
+                      {% if not forloop.last %}
+                      ;
+                      {% endif %}
+                      {% endfor %}
+                      <p><strong>Place of birth: </strong><span>{{ artist.birth_place.title }}</span></p>
+                      <p><strong>Place of death: </strong><span>{{ artist.death_place.title }}</span></p>
+                      <p><a href="{% url creator_record artist.id %}">View More</a></p>
+                      {% else %}
+                      <span style="">No data available.</span></p>
+                      {% endif %}
+                      </blockquote>
+                  </div>
+            </div>
+        </div>
     </div>
   </div>
-
 <!--   Carousel nav -->
-  <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
-  <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div>
+    <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+</div >
 
 <!--HOME IMAGE AND CATEGORIES-->
-<div class="container marketing">
+<div class="container">
       <div class="row">
         <div class="span3">
           <a href="{% url creators_list %}"><h2>Creators</h2></a>
