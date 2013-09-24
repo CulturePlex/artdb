@@ -111,22 +111,6 @@ body {
 
 /*Body*/
 
-.well {
-    background-color:;
-}
-
-.navbar {
-    color:;
-}
-
-a {
-    color: #;
-}
-
-a:hover {
-    color:#;
-}
-
 .order_link {
     color: black;
 }
@@ -147,6 +131,11 @@ thead {
 
 .feature-artist {
     text-indent: 20px;
+}
+
+.category_box {
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .creator {
