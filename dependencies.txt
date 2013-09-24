@@ -18,3 +18,7 @@ Dependencies of other django projects:
  http://versae.github.com/qbe/
  $ django_qbe -> ../qbe/django_qbe/
  $ media/django_qbe -> ../django_qbe/media/django_qbe/
+
+5. django 1.2.7 has a bug documented in 
+https://code.djangoproject.com/attachment/ticket/16778/postgis-adapter-2.patch
+find file django/contrib/gis/db/backends/postgis/adapter.py in virtualenv and apply the patch
