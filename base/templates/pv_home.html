@@ -134,8 +134,11 @@
     <li data-target="#myCarousel" data-slide-to="1"></li>
     <li data-target="#myCarousel" data-slide-to="2"></li>
   </ol>
+
 <!--   Carousel items -->
   <div class="carousel-inner">
+
+  <!-- Item One -->
      <div class="active item">
         <div class="container-fluid">
             <div class="carousel-caption">
@@ -144,7 +147,8 @@
             </div>
         </div>
     </div>
-<!--    FEATURED ARTWORK-->
+
+  <!-- Item Two: Featured Artwork -->
     <div class="item">
         <div class="container-fluid">
             <div class="row-fluid artwork_carousel">
@@ -195,8 +199,9 @@
                   </div>
             </div>
         </div>
-        <!--    FEATURED ARTIST-->
-            <div class="item">
+    </div>
+  <!-- Item Three: FEATURED ARTIST-->
+    <div class="item">
         <div class="container-fluid">
             <div class="row-fluid artwork_carousel">
                 <div class="span4 offset1">
@@ -221,11 +226,10 @@
                           {% endfor %}
                       </div>
                 </div>
-
-                  <h3 class="carousel_words2">Featured Artist</h3>
+                <h3 class="carousel_words2">Featured Artist</h3>
                   {% if artist %}
                   <div class="span4 carousel_words2">
-                    <p class="lead">{{ artist.name }}</ p>
+                    <p class="lead">{{ artist.name }}</p>
                       <blockquote>
                           <p><strong>Lived: </strong>
                           {% if artist.birth_year and artist.death_year %} 
@@ -245,14 +249,15 @@
                       {% endif %}
                       </blockquote>
                   </div>
-            </div>
-        </div>
+              </div>
+          </div>
+      </div>
     </div>
 
 <!--   Carousel nav -->
     <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
     <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
-</div >
+</div>
 
 <!--HOME IMAGE AND CATEGORIES-->
 <div class="container">
