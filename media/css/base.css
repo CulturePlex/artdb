@@ -162,6 +162,22 @@ thead {
     margin-top: 10px;
 }
 
+/* Style for creators.html */
+
+.list_artworks {
+  height:300px;
+  width: 450px;
+  overflow-y:auto;
+  padding: 0;
+}
+
+.masters_students {
+  height:118px;
+  overflow-y: auto;
+  width: 287px;
+  padding:0;
+}
+
  /* Wrapper for page content to push down footer */
       #wrap {
         min-height: 100%;

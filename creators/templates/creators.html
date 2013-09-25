@@ -80,7 +80,7 @@
         <!--List of Artworks-->
             <td colspan="2" align="left" style="padding: 0 0 0 0px;">
                 <h5>List of Artworks:</h5><br/>
-                <div style="height:150px; width: 450px; overflow-y:auto; padding: 0; ">
+                <div class="list_artworks">
                     <table class="table">
                     {% for artwork in creator.artwork_set.all %}
                         <tr>
@@ -99,7 +99,7 @@
             <div style="width: 275px;">
                  <h5>Masters & Students</h5>
             </div>
-            <div style="height:118px; overflow-y: auto; width: 287px; padding:0;">
+            <div class="masters_students">
                 <table>
                     {% for master in creator.masters.all %}
                         <tr>
