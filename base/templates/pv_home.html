@@ -109,7 +109,7 @@
                     <li><a href="{% url login %}">Login</a></li>
                   </ul>
                   <ul class="nav pull-right">
-                    <li><a href="{% url advanced_search %}">Advance Search</a></li>
+                    <li><a href="{% url advanced_search %}">Advanced Search</a></li>
                   </ul>
                     <div class="input-append pull-right search_div">
                     <input class="span2" id="search_text" type="text" value="{{ data }}">
@@ -143,7 +143,7 @@
         <div class="container-fluid">
             <div class="carousel-caption">
                   <h1>BaroqueArt</h1>
-                  <p class="lead">A collection of information about painters and paintings from the Hispanic Baroque spanning Europe, Spanish America and Asia from mid 16th c. to mid 19th c. </p>
+                  <p class="lead">A data collection of Hispanic Baroque painters and paintings from 1550 to 1850. </p>
             </div>
         </div>
     </div>
@@ -264,25 +264,25 @@
       <div class="row">
         <div class="span3">
           <a href="{% url creators_list %}"><h2>Creators</h2></a>
-          <a href="{% url creators_list %}"><img class="img-rounded" src="media/img/artist1.png"></a>
+          <a href="{% url creators_list %}"><img class="img-rounded" src="media/img/portrait1.png"></a>
           <p class="category_box">View biographical information, such as date of birth and death, place of birth and relations to other artists.</p>
           <p><a class="btn btn-inverse" href="{% url creators_list %}">View Creators &raquo;</a></p>
         </div>
         <div class="span3">
             <a href="{% url artworks_list %}"><h2>Artworks</h2></a>
-            <a href="{% url artworks_list %}"><img class="img-rounded" src="media/img/art4.png"></a>
-            <p class="category_box">View information on artworks, such as their original location, their current location and its relation to the creator .</p>
+            <a href="{% url artworks_list %}"><img class="img-rounded" src="media/img/artwork.png"></a>
+            <p class="category_box">View information on artworks, such as their original location, their current location and its relation to the creator.</p>
             <p><a class="btn btn-inverse" href="{% url artworks_list %}">View Artworks &raquo;</a></p>
         </div>
         <div class="span3">
             <a href="{% url series_list %}"><h2>Series</h2></a>
-            <a href="{% url series_list %}"><img class="img-rounded" src="media/img/serie1.png"></a>
+            <a href="{% url series_list %}"><img class="img-rounded" src="media/img/series.png"></a>
             <p class="category_box">View a series, including the works belonging to a group of artworks and the different pieces in one series.</p>
             <p><a class="btn btn-inverse view_buttons" href="{% url series_list %}">View Series &raquo;</a></p>
         </div>
         <div class="span3">
             <a href="{% url map %}"><h2>Map</h2></a>
-            <a href="{% url map %}"><img class="img-rounded" src="media/img/search3.png"></a>
+            <a href="{% url map %}"><img class="img-rounded" src="media/img/worldmap.png"></a>
             <p class="category_box">The map view allows a visualization of the paintings in both spacial and temporal settings.</p>
           <p><a class="btn btn-inverse view_buttons" href="{% url map %}">View Map &raquo;</a></p>
         </div>
@@ -297,9 +297,13 @@
       <div class="container">
         <p class="muted credit">
             <span class="pull-right">&copy; CulturePlex Lab</span>
-        <a href="http://www.cultureplex.ca/" target="blank">CulturePlex.ca</a>
-        &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; <a href="{% url contact %}">Contact Us</a>
-        &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="{% url about %}">About Us</a>
+              <a href="#">Cite Us</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <a href="http://ontologies.cultureplex.ca/baroqueart/spec/index.html" target="blank">Ontology</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <a href="http://www.cultureplex.ca/" target="blank">CulturePlex.ca</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; <a href="{% url contact %}">Contact Us</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="{% url about %}">About Us</a>
         </p>
       </div>
     </div>
