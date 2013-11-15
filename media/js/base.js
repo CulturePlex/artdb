@@ -81,8 +81,6 @@ function initialize() {
         var container = document.createElement("div");
         var filterDiv = $("<DIV>");
         var filterLabel = $("<LABEL>");
-        var filterSpanHome = $("<SPAN>");
-        var filterSpanExhibit = $("<SPAN>");
         var filterSelect = $("<SELECT>");
         var filterOptionsValues = ["artwork_original_place",
                                    "artwork_current_place"];
@@ -97,21 +95,7 @@ function initialize() {
             filterSelect.append(filterOption);
         }
         filterLabel.attr("for", "filterSelect");
-        filterLabel.html("Artwork locations by");
-        filterSpanHome.attr("href", "javascript:void(0);");
-        filterSpanHome.html("Home");
-        filterDiv.append(filterSpanHome);
-        filterSpanHome.click(function() {
-            location.href = "/";
-            return false;
-        });
-        filterSpanExhibit.attr("href", "javascript:void(0);");
-        filterSpanExhibit.html("Exhibit");
-        filterDiv.append(filterSpanExhibit);
-        filterSpanExhibit.click(function() {
-            location.href = "/exhibit/artworks/?"+ dateSelectedRange;
-            return false;
-        });
+        filterLabel.html("Filter by");
         filterDiv.append(filterLabel);
         filterDiv.append(filterSelect);
         filterSelect.change(function() {
@@ -125,7 +109,7 @@ function initialize() {
         return container;
     }
     FilterControl.prototype.getDefaultPosition = function() {
-      return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_RIGHT, new google.maps.Size(212, 7)); // 305
+      return new google.maps.ControlPosition(google.maps.ANCHOR_TOP_RIGHT, new google.maps.Size(8, 38)); // 305
     }
     map.addControl(timeControl);
 //    map.addControl(new ExhibitControl());
