@@ -1,0 +1,66 @@
+{% extends "pv_home.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "About" %}{% endblock %}
+
+
+{% block main_body %}
+
+
+<div class="container-fluid">
+
+<h2>How to cite us...</h2>
+
+<div class="container-fluid cite_us">
+
+	<p class="lead cite_type">MLA</p>
+
+		<p>"[Entry.]"  BaroqueArt. CulturePlex Lab, 2007-2013. Web. [Date of access].</p>
+
+		<p>BaroqueArt. CulturePlex Lab, 2007-2013. Web. [Date of access].</p>
+
+</div>
+
+<div class="container-fluid cite_us">
+
+	<p class="lead cite_type">APA</p>
+
+		<p>[Entry]. (2007-2013). BaroqueArt. URL: baroqueart.cultureplex.ca [Date of access].</p>
+
+		<p>BaroqueArt. (2007-2013). URL: baroqueart.cultureplex.ca [Date of access].</p>
+
+</div>
+
+<div class="container-fluid cite_us">
+
+	<p class="lead cite_type">Chicago</p>
+
+		<p>CulturePlex Lab, “[Entry.]” BaroqueArt. [Date of access] http://baroqueart.cultureplex.ca</p>
+
+		<p>CulturePlex Lab, BaroqueArt. [Date of access] http://baroqueart.cultureplex.ca</p>
+
+</div>
+
+<div class="container-fluid cite_us">
+
+	<p class="lead">BibTeX</p>
+
+		<pre>
+@ONLINE {
+	Doe:2009:Online,
+	author
+	g = {Doe, Ringo},
+	title = {This is a test entry of type {@ONLINE}},
+	month = jun,
+	year = {2009},
+	url = {http://www.test.org/doe/}
+}
+		</pre>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}
