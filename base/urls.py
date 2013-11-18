@@ -8,5 +8,6 @@ urlpatterns = patterns('base.views',
 
     url(r'contact/$', 'contact', name="contact"),
     url(r'about/$', 'about', name="about"),
+    url(r'cite_us/$', 'cite_us', name="cite_us"),
     url(r'login/$', 'login', name="login")
 )
