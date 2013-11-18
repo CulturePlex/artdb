@@ -146,3 +146,9 @@ def login(request):
     {},
     context_instance=RequestContext(request)
     )
+
+def cite_us(request):
+    return render_to_response('cite_us.html',
+    {},
+    context_instance=RequestContext(request)
+    )
