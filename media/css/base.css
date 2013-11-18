@@ -290,6 +290,29 @@ html, body {
 }
 
 
+/*Cite Us page*/
+
+.cite_us {
+  margin-top: 50px;
+}
+
+.cite_type {
+  margin-bottom: 20px;
+}
+
+/*Cite Us*/
+
+.about_lines {
+  line-height: 30px;
+  text-align: justify;
+  text-indent: 50px;
+}
+
+.about_text {
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+}
 
 /* Header */
 
@@ -375,7 +398,7 @@ html, body {
     font-size: 10px;
     margin: 8px 8px 8px 8px;
     padding: none;
-    width: 118px;
+    width: 11px;
 }
 
 .filterMapControl span {
@@ -408,9 +431,4 @@ html, body {
 
 #mapContainer .infoWindow ol li a {
     color: #8B0000;
-}
-
-
-.cite_us {
-  margin-top: 50px;
 }
