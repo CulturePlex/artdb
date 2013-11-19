@@ -22,7 +22,7 @@ def public_view(request):
     else:
         random_creator = None
     no_search_box = request.GET.get("no_search", "true")
-    return render_to_response('pv_home.html',
+    return render_to_response('home.html',
                               {"artwork": random_artwork, 
                               "artist": random_creator,
                               "no_search": no_search_box,
