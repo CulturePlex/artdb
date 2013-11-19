@@ -9,56 +9,67 @@
 
 <div class="container-fluid">
 
-<h2>How to cite us...</h2>
+	<h2>How to cite us...</h2>
 
-<div class="container-fluid cite_us">
+	<div class="container-fluid cite_us">	
+		<h1><small>MLA</small></h1>
+			<div class="container type_container">
+				<p class="lead cite_type">Specific Entry</p>
+					<blockquote class="blockquote_cite">
+						<p>"[Entry.]" <i>BaroqueArt</i>. CulturePlex Lab, 2007-2013. Web. {% now "j M. Y" %}.</p>
+					</blockquote>
+				<p class="lead cite_type">Whole Site</p>
+					<blockquote>
+						<p><i>BaroqueArt</i>. CulturePlex Lab, 2007-2013. Web. {% now "j M. Y" %}.</p>
+					</blockquote>
+			</div>
+	</div>
 
-	<p class="lead cite_type">MLA</p>
+	<div class="container-fluid cite_us">
+		<h1><small>APA</small></h1>
+			<div class="container type_container">
+				<p class="lead cite_type">Specific Entry</p>
+				<blockquote>
+					<p>[Entry]. (2007-2013). <i>BaroqueArt</i>. URL: baroqueart.cultureplex.ca {% now "j M. Y" %}.</p>
+				</blockquote>
 
-		<p>"[Entry.]"  BaroqueArt. CulturePlex Lab, 2007-2013. Web. {% now "j M. Y" %}.</p>
+				<p class="lead cite_type">Whole Site</p>
+				<blockquote>
+					<p><i>BaroqueArt</i>. (2007-2013). URL: baroqueart.cultureplex.ca {% now "j M. Y" %}.</p>
+				</blockquote>
+			</div>
+	</div>
 
-		<p>BaroqueArt. CulturePlex Lab, 2007-2013. Web. {% now "j M. Y" %}.</p>
+	<div class="container-fluid cite_us">
+		<h1><small>Chicago</small></h1>
+			<div class="container type_container">
+				<p class="lead cite_type">Specific Entry</p>
+				<blockquote>
+					<p>CulturePlex Lab, “[Entry.]” <i>BaroqueArt</i>. {% now "j M. Y" %} http://baroqueart.cultureplex.ca</p>
+				</blockquote>
 
-</div>
+				<p class="lead cite_type">Whole Site</p>
+				<blockquote>
+					<p>CulturePlex Lab, <i>BaroqueArt</i>. {% now "j M. Y" %} http://baroqueart.cultureplex.ca</p>
+				</blockquote>
+			</div>
+	</div>
 
-<div class="container-fluid cite_us">
-
-	<p class="lead cite_type">APA</p>
-
-		<p>[Entry]. (2007-2013). BaroqueArt. URL: baroqueart.cultureplex.ca {% now "j M. Y" %}.</p>
-
-		<p>BaroqueArt. (2007-2013). URL: baroqueart.cultureplex.ca {% now "j M. Y" %}.</p>
-
-</div>
-
-<div class="container-fluid cite_us">
-
-	<p class="lead cite_type">Chicago</p>
-
-		<p>CulturePlex Lab, “[Entry.]” BaroqueArt. {% now "j M. Y" %} http://baroqueart.cultureplex.ca</p>
-
-		<p>CulturePlex Lab, BaroqueArt. {% now "j M. Y" %} http://baroqueart.cultureplex.ca</p>
-
-</div>
-
-<div class="container-fluid cite_us">
-
-	<p class="lead">BibTeX</p>
-
-		<pre>
-	@misc{ 
+	<div class="container-fluid cite_us">
+		<h1><small>BibTeX</small></h1>
+			<pre>
+	@online{ 
 		author = "CulturePlex Lab",
 		title = "BaroqueArt Database",
 		year = "{% now "Y" %}",
-		url = "URL",
-		note = "[Online; accessed {% now "j-F-Y" %}]"
+		url = "http://baroqueart.cultureplex.ca/",
+		urldate = "{% now "Y-m-d" %}"
 	}
-		</pre>
+			</pre>
+	</div>
 
 </div>
 
-</div>
 
-</div>
 
 {% endblock %}
