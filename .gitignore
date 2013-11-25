@@ -6,7 +6,6 @@ local_settings.py
 *.gexf
 *.arff
 *.xls
-*.png
 *.freqs.txt
 django_descriptors
 media/django_descriptors
