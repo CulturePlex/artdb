@@ -196,6 +196,11 @@ thead {
 
 /* Style for creators.html */
 
+.header-creators {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
 .list_artworks {
   height:300px;
   width: 450px;
@@ -212,9 +217,9 @@ thead {
 
 /* Style for artworks.html */
 
-.artworks-header {
-    margin-top: 30px;
-    margin-bottom: 40px;
+.header-artworks {
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .first-last {
@@ -287,6 +292,13 @@ v\:* {
 html, body {
     height: 100%;
     width: 100%;
+}
+
+/*Series listed*/
+
+.header-series {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /*Login*/

@@ -42,6 +42,7 @@
 <!--    Need to make a loop one for singular and one for plural-->
         <em>This series has {{ serie.artwork_set.count }} artworks.</em>
     </div>
+</div>
 <div class="row-fluid">
     <div class="8">
         <table class="table">
@@ -78,35 +79,35 @@
     </div>
 
 <!--PAGINATION-->
-<div class="pagination pagination-centered">   
-    {% if artworks.paginator.num_pages == 1 %}                
-        <span class="first-last"> First </span>
-    {% else %}
-        <a id="first" href="?page=1" class="first-last">First</a>
-    {% endif %}
-    &nbsp;&nbsp;
-    {% if artworks.has_previous %}
-        <a href="?page={{ artworks.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
-    {% else %}
-        <span class="badge badge-info"> Previous </span>
-    {% endif %}
-        <span class="current">
-        &nbsp;&nbsp;Page {{ artworks.number }} of {{ artworks.paginator.num_pages }}&nbsp;&nbsp;
-        </span>
-    {% if artworks.has_next %}
-        <a href="?page={{ artworks.next_page_number }}"><span class="badge badge-info">Next</span></a>
-    {% else %}
-        <span class="badge badge-info"> Next </span>
-    {% endif %}
-    &nbsp;&nbsp;
-    {% if artworks.paginator.num_pages == 1 %}
-        <span class="first-last"> Last </span>
-    {% else %}
-        <a href="?page={{ artworks.paginator.num_pages }}"><span class="first-last">Last</span></a>
-    {% endif %}
+    <div class="pagination pagination-centered">   
+        {% if artworks.paginator.num_pages == 1 %}                
+            <span class="first-last"> First </span>
+        {% else %}
+            <a id="first" href="?page=1" class="first-last">First</a>
+        {% endif %}
+        &nbsp;&nbsp;
+        {% if artworks.has_previous %}
+            <a href="?page={{ artworks.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
+        {% else %}
+            <span class="badge badge-info"> Previous </span>
+        {% endif %}
+            <span class="current">
+            &nbsp;&nbsp;Page {{ artworks.number }} of {{ artworks.paginator.num_pages }}&nbsp;&nbsp;
+            </span>
+        {% if artworks.has_next %}
+            <a href="?page={{ artworks.next_page_number }}"><span class="badge badge-info">Next</span></a>
+        {% else %}
+            <span class="badge badge-info"> Next </span>
+        {% endif %}
+        &nbsp;&nbsp;
+        {% if artworks.paginator.num_pages == 1 %}
+            <span class="first-last"> Last </span>
+        {% else %}
+            <a href="?page={{ artworks.paginator.num_pages }}"><span class="first-last">Last</span></a>
+        {% endif %}
+    </div>
 </div>
-</div>
-</td>
+
 
 <div class="span4">
             <td style="width:30%; vertical-align: top; padding: 10px 0 0 30px; ">
