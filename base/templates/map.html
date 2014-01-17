@@ -4,17 +4,22 @@
 {% block title %}{% trans "Map" %}{% endblock %}
 
 {% block extra_links %}
-<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/start/jquery-ui.css" />
+<link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/start/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="/media/css/TimeControl.css" />
 {% endblock %}
 
-{% block extra_scripts %}
-<script type="text/javascript" src="http://www.google.com/jsapi?key={{ GOOGLE_API_KEY }}"></script>
+{% block scripts %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_API_KEY }}&sensor=false"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+ <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script type="text/javascript" src="/media/js/base.js"></script>
-<!--<script type="text/javascript" src="/media/js/TimeControl.js"></script>-->
-<!--<script type="text/javascript" src="/media/js/markerclusterer.js"></script>-->
+<script type="text/javascript" src="/media/js/TimeControl.js"></script>
+<script type="text/javascript" src="/media/js/markerclusterer.js"></script>
 {% endblock %}
 
+{% block body_attrs %}
+class="navbar-map-body"
+{% endblock %}
 {% block body %}
 
 <div class="navbar navbar-inverse navbar-map">
@@ -38,8 +43,6 @@
 			</div>
 	</div>
 </div>
-
-
 
 <div id="mapContainer">
     <div id="map">{% trans "Loading" %}...</div>

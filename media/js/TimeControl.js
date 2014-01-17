@@ -1,4 +1,5 @@
-function TimeControl(opts) {
+function TimeControl(map, opts) {
+    this.map = document.getElementById(map);
     this.onStart = this.timeStartHandler(opts.onStart || function() {});
     this.onTimeChange = this.timeChangeHandler(opts.onTimeChange || function() {});
     this.onTimeMove = this.timeMoveHandler(opts.onTimeMove || function() {});
@@ -24,32 +25,28 @@ function TimeControl(opts) {
         this.selected = opts.selected.getUTCFullYear() - this.yearStart || start;
     }
     this.step = opts.zoom || this.YEAR;
-    this.defaultPosition = opts.position || new google.maps.ControlPosition(google.maps.ANCHOR_TOP_LEFT,
-                                                                            new google.maps.Size(75, 24));
-}
-TimeControl.prototype = new google.maps.Control();
-TimeControl.prototype.initialize = function(map) {
-    var parent = this;
+    this.defaultPosition = opts.position || google.maps.ControlPosition.LEFT_TOP;
+    // Init code
     var container = document.createElement("div");
     $(container).attr("id", this.id);
     var minusButton = document.createElement("div");
     $(minusButton).addClass(this.css +"MinusButton");
     $(minusButton).click(function() {
-        $('#'+ parent.id +'MinusDatePicker').datepicker('enable');
-        $('#'+ parent.id +'MinusDatePicker').datepicker('show');
+        $('#'+ this.id +'MinusDatePicker').datepicker('enable');
+        $('#'+ this.id +'MinusDatePicker').datepicker('show');
     });
     var plusButton = document.createElement("div");
     $(plusButton).addClass(this.css +"PlusButton");
     $(plusButton).click(function() {
-        $('#'+ parent.id +'PlusDatePicker').datepicker('enable');
-        $('#'+ parent.id +'PlusDatePicker').datepicker('show');
+        $('#'+ this.id +'PlusDatePicker').datepicker('enable');
+        $('#'+ this.id +'PlusDatePicker').datepicker('show');
     });
     var timeSlider = document.createElement("div");
     $(timeSlider).addClass(this.css);
     var sliderParams = {
         min: this.min,
         max: this.max,
-        step: this.step, 
+        step: this.step,
         range: this.range,
         change: this.onTimeChange,
         slide: this.onTimeMove,
@@ -128,9 +125,9 @@ TimeControl.prototype.initialize = function(map) {
     container.appendChild(plusButton);
     container.appendChild(minusDatePickerContainer);
     container.appendChild(plusDatePickerContainer);
-    map.getContainer().appendChild(container);
+    this.map.appendChild(container);
 
-    $('#'+ this.id +' .'+ this.css).slider("destroy");
+    // $('#'+ this.id +' .'+ this.css).slider("destroy");
     $('#'+ this.id +' .'+ this.css).slider(sliderParams);
 
     var datePickerParamsMinus = datePickerParams;
@@ -145,7 +142,8 @@ TimeControl.prototype.initialize = function(map) {
 
     this.selected = this.normalizeSelectedDate(this.selected);
     this.onStart(this.selected, this.range);
-    return container;
+    this.container = container;
+    return this;
 }
 TimeControl.prototype.normalizeSelectedDate = function(val) {
     var sel;

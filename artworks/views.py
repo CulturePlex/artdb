@@ -8,7 +8,7 @@ from django.db.models import Count
 from django.core.urlresolvers import reverse
 from django.utils.translation import gettext as _
 from artworks.models import Artwork, Serie
-from django_descriptors.models import Descriptor, DescribedItem
+from django_descriptors.models import DescribedItem
 from base.models import GeospatialReference
 
 
@@ -56,6 +56,7 @@ def series_record(request, serie_id):
                               {"serie": serie, "artworks": artworks},
                               context_instance=RequestContext(request))
 
+
 def artworks_list(request):
     artwork_list = None
     orderby = request.GET.get('orderby', None)
@@ -73,8 +74,9 @@ def artworks_list(request):
         page = 1
     artworks = paginator.page(page)
     return render_to_response('artworks_list.html',
-                            {"artworks": artworks, "order": orderby},
-                            context_instance=RequestContext(request))
+                              {"artworks": artworks, "order": orderby},
+                              context_instance=RequestContext(request))
+
 
 def artworks_record(request, artwork_id):
     request.breadcrumbs('Artworks', reverse('artworks_list'))
@@ -82,10 +84,10 @@ def artworks_record(request, artwork_id):
     artwork = None
     artwork = Artwork.objects.get(id=artwork_id)
     description = DescribedItem.objects.get_for_object(artwork)
-    return render_to_response('artworks.html', 
+    return render_to_response('artworks.html',
                               {"artwork": artwork,
                                "descriptor": description},
-                             context_instance=RequestContext(request))
+                              context_instance=RequestContext(request))
 
 
 def artworks_locations(request, year_from, year_to):
@@ -127,7 +129,7 @@ def artworks_locations(request, year_from, year_to):
 def artworks_by_locations(request, geospatialreference_id):
     location_type = request.GET.get("type", "artwork_original_place")
     if location_type in ("artwork_current_place", "artwork_original_place"):
-        location_type = location_type[8:] # Removing "artwork_" prefix
+        location_type = location_type[8:]  # Removing "artwork_" prefix
     else:
         location_type = "original_place"
     params = {

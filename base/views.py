@@ -23,7 +23,7 @@ def public_view(request):
         random_creator = None
     no_search_box = request.GET.get("no_search", "true")
     return render_to_response('home.html',
-                              {"artwork": random_artwork, 
+                              {"artwork": random_artwork,
                               "artist": random_creator,
                               "no_search": no_search_box,
                               }, context_instance=RequestContext(request))
@@ -36,14 +36,14 @@ def dynamic_query(model, fields, values, operator):
         return too many results
      We return an empty dict if we have no filters so we can
         still return an empty response from the view
-    """    
+    """
     queries = []
     for (f, v) in zip(fields, values):
         # We only want to build a Q with a value
         if v != "":
             kwargs = {str('%s__contains' % f) : str('%s' % v)}
             queries.append(Q(**kwargs))
-    
+
     # Make sure we have a list of filters
     if len(queries) > 0:
         q = Q()
@@ -51,9 +51,9 @@ def dynamic_query(model, fields, values, operator):
         i = 0
         if operator == '':
             operator = ['or', 'or']
-        
+
         operator.insert(0,'or')
-        
+
         for query in queries:
             if operator[i] == 'and':
                 q = q & query
@@ -62,14 +62,14 @@ def dynamic_query(model, fields, values, operator):
             else:
                 q = None
             i = i+1
-            
+
         if q:
             # We have a Q object, return the QuerySet
             return model.objects.filter(q)
     else:
         # Return an empty result
         return {}
-    
+
 def make_query(object_name, fields, values, operators, page):
     result = None
     if object_name is None:
@@ -83,7 +83,7 @@ def make_query(object_name, fields, values, operators, page):
         if len(fields) == 0:
             exec('result = '+ object_name +'.objects.all()')
         else:
-            obj = None 
+            obj = None
             exec('obj = '+ object_name)
             result = dynamic_query(obj, fields, values, operators)
     return result
@@ -91,7 +91,6 @@ def make_query(object_name, fields, values, operators, page):
 
 def advanced_search(request):
     footer = request.GET.get("footer", 'false')
-    print request.GET
     return render_to_response("search.html",
         {"advanced": reverse("advanced_search"),
          "footer": footer},

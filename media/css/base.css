@@ -255,7 +255,7 @@ thead {
       }
       .marketing p + h4 {
         margin-top: 28px;
-      } 
+      }
 
  .marketing .span4 {
       text-align: center;
@@ -282,7 +282,7 @@ thead {
 .advance_search {
     margin-top: 20px;
     margin-left: 10px;
-    
+
 }
 
 v\:* {
@@ -359,7 +359,13 @@ blockquote {
 
 
 .navbar-map {
-    margin-bottom: 0px;
+  margin-bottom: 0px;
+  width: 100%;
+  z-index: 100;
+}
+
+.navbar-map-body {
+  padding: 0px;
 }
 
 .navbar-map .navbar-inner
@@ -372,9 +378,9 @@ blockquote {
 #progress {
     float: left;
     height: 17px;
-    left: 76px;
+    left: 90px;
     position: absolute;
-    top: 26px;
+    top: 35px;
     width: 268px;
     display: none;
     color: #6688CC;
@@ -382,6 +388,7 @@ blockquote {
     font-weight: bold;
     font-family: 'Arial';
     text-align: center;
+    z-index: 10;
 }
 
 
@@ -414,6 +421,10 @@ blockquote {
     font-size: 12px;
     font-weight: bold;
     padding: 0px 1px 0px 4px;
+    z-index: 10;
+    position: absolute;
+    top: 5px;
+    right: 5px;
 }
 
 .filterMapControl select {
@@ -455,4 +466,12 @@ blockquote {
 
 #mapContainer .infoWindow ol li a {
     color: #8B0000;
+}
+
+#map img {
+  max-width: none;
+}
+
+#map label {
+  width: auto; display:inline;
 }
