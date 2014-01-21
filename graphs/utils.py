@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import codecs
 import csv
-import nltk
+# import nltk
 import re
 
+from datetime import datetime
 from StringIO import StringIO
 
 from django.db.models import F, Q
@@ -857,3 +858,53 @@ def get_colours(n):
             colours.append((base[start] * (1.0 - x)) +
                            (base[start + 1] * x))
     return [pastel(c) for c in colours[0:n]]
+
+
+def dump_artworks_csv(filename=None):
+    if not filename:
+        now = datetime.now()
+        date = now.strftime("%Y%M%d")
+        filename = "baroqueart.dump.%s.csv" % date
+    writer = UnicodeWriter(codecs.open(filename, "w", "utf-8"))
+    labels = ["title", "creation_year_start", "creation_year_end", "creators",
+              "original_place", "current_place", "images",
+              "size", "serie", "descriptors"]
+    writer.writerow(labels)
+    artworks = Artwork.objects.all().select_related()
+    for artwork in artworks:
+        images = []
+        for image in artwork.images.all():
+            if image.image:
+                images.append(image.image.url)
+            elif image.url:
+                images.append(image.url)
+        descriptors = []
+        for descriptor in Descriptor.objects.get_for_object(artwork):
+            if descriptor.value:
+                descriptors.append(u"%s: %s"
+                                   % (descriptor.name, descriptor.value))
+            else:
+                descriptors.append(descriptor.name)
+        original_place = u"%s. %s" % (artwork.original_place.title,
+                                      artwork.original_place.address)
+        current_place = u"%s. %s" % (artwork.current_place.title,
+                                     artwork.current_place.address)
+        creators = []
+        for creator in artwork.creators.all():
+            life = ""
+            if creator.birth_year or creator.death_year:
+                life = u" (%s – %s)" % (creator.birth_year, creator.death_year)
+            creators.append(u"%s%s" % (creator.name, life))
+        row = [
+            artwork.title,
+            artwork.creation_year_start,
+            artwork.creation_year_end,
+            creators,
+            original_place,
+            current_place,
+            ", ".join(images),
+            artwork.size,
+            artwork.serie.title,
+            ", ".join(descriptors),
+        ]
+        writer.writerow(row)
