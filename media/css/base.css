@@ -329,11 +329,9 @@ blockquote {
 .about_lines {
   line-height: 30px;
   text-align: justify;
-  text-indent: 50px;
 }
 
 .about_text {
-  padding-left: 30px;
   padding-right: 30px;
   padding-top: 30px;
 }
