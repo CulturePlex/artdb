@@ -58,21 +58,20 @@
     <div class="row-fluid">
         <div class="span6">
                         <div class="img_artwork">
-                            <img src="/media/img/art3.png">
                             {% if artwork.images.count != 0 %}
-                            {% for artImg in artwork.images.all %} 
-                            {% if artImg.url %} 
-                                {% thumbnail artImg.url "190x190,crop" %}
+                                {% for artImg in artwork.images.all %} 
+                                    {% if artImg.url %} 
+                                        {% thumbnail artImg.url "190x190,crop" %}
+                                    {% else %}
+                                        {% if artImg.image %}
+                                            {% thumbnail artImg.image "190x190,crop" %}
+                                        {% else %}
+                                            {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                        {% endif %}
+                                    {% endif %} 
+                                {% endfor %} 
                             {% else %}
-                                {% if artImg.image %}
-                                    {% thumbnail artImg.image "190x190,crop" %}
-                                {% else %}
-                                    {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
-                                {% endif %}
-                            {% endif %} 
-                            {% endfor %} 
-                            {% else %}
-                            {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
                             {% endif %} 
                         </div>
         </div>
