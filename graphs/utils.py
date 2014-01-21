@@ -10,7 +10,7 @@ from StringIO import StringIO
 from django.db.models import F, Q
 from django.template.defaultfilters import force_escape as escape
 
-from django_descriptors.models import Descriptor
+from django_descriptors.models import Descriptor, DescribedItem
 from artworks.models import Artwork
 
 
@@ -879,12 +879,13 @@ def dump_artworks_csv(filename=None):
             elif image.url:
                 images.append(image.url)
         descriptors = []
-        for descriptor in Descriptor.objects.get_for_object(artwork):
+        for descriptor in DescribedItem.objects.get_for_object(artwork):
             if descriptor.value:
                 descriptors.append(u"%s: %s"
-                                   % (descriptor.name, descriptor.value))
+                                   % (descriptor.descriptor.name,
+                                      descriptor.value))
             else:
-                descriptors.append(descriptor.name)
+                descriptors.append(descriptor.descriptor.name)
         original_place = u"%s. %s" % (artwork.original_place.title,
                                       artwork.original_place.address)
         current_place = u"%s. %s" % (artwork.current_place.title,
