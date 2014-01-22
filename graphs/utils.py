@@ -863,7 +863,7 @@ def get_colours(n):
 def dump_artworks_csv(filename=None):
     if not filename:
         now = datetime.now()
-        date = now.strftime("%Y%M%d")
+        date = now.strftime("%Y%m%d")
         filename = "baroqueart.dump.%s.csv" % date
     csv_file = open(filename, "w")
     writer = UnicodeWriter(csv_file)
