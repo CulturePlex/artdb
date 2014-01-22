@@ -886,10 +886,14 @@ def dump_artworks_csv(filename=None):
                                       descriptor.value))
             else:
                 descriptors.append(descriptor.descriptor.name)
-        original_place = u"%s. %s" % (artwork.original_place.title,
-                                      artwork.original_place.address)
-        current_place = u"%s. %s" % (artwork.current_place.title,
-                                     artwork.current_place.address)
+        original_place = u""
+        if artwork.original_place:
+            original_place = u"%s. %s" % (artwork.original_place.title,
+                                          artwork.original_place.address)
+        current_place = u""
+        if artwork.current_place:
+            current_place = u"%s. %s" % (artwork.current_place.title,
+                                         artwork.current_place.address)
         creators = []
         for creator in artwork.creators.all():
             life = ""
