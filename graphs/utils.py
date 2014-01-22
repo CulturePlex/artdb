@@ -865,7 +865,8 @@ def dump_artworks_csv(filename=None):
         now = datetime.now()
         date = now.strftime("%Y%M%d")
         filename = "baroqueart.dump.%s.csv" % date
-    writer = UnicodeWriter(codecs.open(filename, "w", "utf-8"))
+    csv_file = open(filename, "w")
+    writer = UnicodeWriter(csv_file)
     labels = ["title", "creation_year_start", "creation_year_end", "creators",
               "original_place", "current_place", "images",
               "size", "serie", "descriptors"]
@@ -896,7 +897,7 @@ def dump_artworks_csv(filename=None):
                                          artwork.current_place.address)
         creators = []
         for creator in artwork.creators.all():
-            life = ""
+            life = u""
             if creator.birth_year or creator.death_year:
                 life = u" (%s – %s)" % (creator.birth_year, creator.death_year)
             creators.append(u"%s%s" % (creator.name, life))
@@ -907,12 +908,13 @@ def dump_artworks_csv(filename=None):
             artwork.title,
             artwork.creation_year_start,
             artwork.creation_year_end,
-            creators,
+            u", ".join(creators),
             original_place,
             current_place,
-            ", ".join(images),
+            u", ".join(images),
             artwork.size,
             serie,
-            ", ".join(descriptors),
+            u", ".join(descriptors),
         ]
         writer.writerow(row)
+    csv_file.close()
