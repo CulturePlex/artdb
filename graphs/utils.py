@@ -900,6 +900,9 @@ def dump_artworks_csv(filename=None):
             if creator.birth_year or creator.death_year:
                 life = u" (%s – %s)" % (creator.birth_year, creator.death_year)
             creators.append(u"%s%s" % (creator.name, life))
+        serie = u""
+        if artwork.serie:
+            serie = artwork.serie.title
         row = [
             artwork.title,
             artwork.creation_year_start,
@@ -909,7 +912,7 @@ def dump_artworks_csv(filename=None):
             current_place,
             ", ".join(images),
             artwork.size,
-            artwork.serie.title,
+            serie,
             ", ".join(descriptors),
         ]
         writer.writerow(row)
