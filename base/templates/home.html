@@ -8,37 +8,37 @@
 {% block extra_scripts %}
 <script type="text/javascript" src="/media/js/jquery.cycle.all.js"></script>
 <script type="text/javascript">
-    
+
     this.searchClicked = function(){
         $('#search_button').click(function(){
             search_data = $('#search_text').val();
             window.location.href = '{% url search_results %}?data=' + search_data;
         });
     };
-    
+
     this.advancedSearch = function(){
         $('#advanced_search_button').click(function(){
             window.location.href = '{% url advanced_search %}';
         });
     };
-    
+
     this.initialize_menu = function(div_name){
         $(div_name).mouseenter(function(){
             $(div_name).cycle('resume');
         });
-        
+
         $(div_name).mouseleave(function(){
             $(div_name).cycle('pause');
         });
-        
+
         $(div_name).cycle({
             fx: 'fade',
             timeout: '500' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
         });
-        
+
         $(div_name).cycle('pause');
     }
-    
+
     this.link_menu = function(){
         $('.ss_artwork').click(function(){
             window.location.href = '{% url artworks_list %}';
@@ -53,23 +53,23 @@
             window.location.href = '{% url map %}';
         });
     }
-    
+
     initialize_artist = function(){
         $('#work_history').mouseenter(function(){
             $('#work_history').cycle('pause');
         });
-        
+
         $('#work_history').mouseleave(function(){
             $('#work_history').cycle('resume');
         });
-        
+
         $('#work_history').cycle({
             fx: 'fade',
             timeout: '500' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
         });
-        
+
     }
-    
+
     $(document).ready(function(){
         initialize_menu('.ss_artwork');
         initialize_menu('.ss_creator');
@@ -121,7 +121,7 @@
 
       </div>
     </div>
- 
+
  <div class="container fluid">
 
 {% block main_body %}
@@ -155,18 +155,18 @@
                 <div class="span4 offset1">
                     <div class="carousel_artwork">
                           <img src="/media/img/arenoir.jpg">
-                              {% if artwork.images.count != 0 %} 
-                              {% for artImg in artwork.images.all %}  
-                                  {% if artImg.url %} 
+                              {% if artwork.images.count != 0 %}
+                              {% for artImg in artwork.images.all %}
+                                  {% if artImg.url %}
                                       {% thumbnail artImg.url "190x190,crop" %}
                                   {% else %}
                                       {% if artImg.image %}
                                           {% thumbnail artImg.image "190x190,crop" %}
-                                      {% else %} 
-                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                      {% else %}
+                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
                                       {% endif %}
-                                  {% endif %} 
-                              {% endfor %} 
+                                  {% endif %}
+                              {% endfor %}
                           {% else %}
                               {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
                           {% endif %}
@@ -182,12 +182,12 @@
                        {% endfor %}
                        {% if artwork.creation_year_start and artwork.creation_year_end %}</p>
                        <p><strong>Dated In:</strong> <span>{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}</span></p>
-                        {% else %} 
+                        {% else %}
                         <p><strong>Dated In: </strong><span>n/a</span></p>
                         {% endif%}
-                        {% if artwork.current_place %} 
+                        {% if artwork.current_place %}
                         <p><strong>Current Location: </strong><span>{{ artwork.current_place.title }}</span></p>
-                        {% else %} 
+                        {% else %}
                         <p><strong>Current Location: </strong><span>n/a</span>
                         {% endif%}
                     </p>
@@ -210,19 +210,26 @@
                               {% if artwork.images.count != 0 %} 
                                   {% for artImg in artwork.images.all %}  
                                       {% if artImg.url %} 
+                          {% for artwork in artist.artwork_set.all %}
+                              {% if artwork.images.count != 0 %}
+                                  {% for artImg in artwork.images.all %}
+                                      {% if artImg.url %}
                                           {% thumbnail artImg.url "190x190,crop" %}
                                       {% else %}
                                       {% if artImg.image %}
                                           {% thumbnail artImg.image "190x190,crop" %}
-                                      {% else %} 
-                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %} 
+                                      {% else %}
+                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
                                       {% endif %}
-                                  {% endif %} 
-                              {% endfor %} 
+                                  {% endif %}
+                              {% endfor %}
                           {% else %}
                               {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
                           {% endif %}
-                          
+                          {% endfor %}
+                          {% endif %}
+                          {% endfor %}
+                          {% endif %}
                       </div>
                 </div>
                 <h3 class="carousel_words2">Featured Artist</h3>
@@ -231,7 +238,7 @@
                     <p class="lead">{{ artist.name }}</p>
                       <blockquote>
                           <p><strong>Lived: </strong>
-                          {% if artist.birth_year and artist.death_year %} 
+                          {% if artist.birth_year and artist.death_year %}
                           <span>{{ artist.birth_year }} - {{ artist.death_year }}</span>
                       {% else %} <span>n/a</span></p>
                       {% endif%}
@@ -295,14 +302,18 @@
     <div id="footer">
       <div class="container">
         <p class="muted credit">
-            <span class="pull-right">&copy; CulturePlex Lab</span>
+            <span class="pull-right">&copy; <a href="http://www.cultureplex.ca/" target="blank">CulturePlex Lab</a></span>
               <a href="{% url cite_us %}">Cite Us</a>
               &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
               <a href="http://ontologies.cultureplex.ca/baroqueart/spec/index.html" target="blank">Ontology</a>
               &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
-              <a href="http://www.cultureplex.ca/" target="blank">CulturePlex.ca</a>
-              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; <a href="{% url contact %}">Contact Us</a>
-              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;<a href="{% url about %}">About Us</a>
+              <a href="/media/dumps/baroqueart.dump.zip" target="blank">Dataset (CC0)</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <a href="{% url terms %}">Terms</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <a href="{% url contact %}">Contact Us</a>
+              &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;
+              <a href="{% url about %}">About Us</a>
         </p>
       </div>
     </div>

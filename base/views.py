@@ -151,3 +151,9 @@ def cite_us(request):
     {},
     context_instance=RequestContext(request)
     )
+
+def terms(request):
+    return render_to_response('terms.html',
+    {},
+    context_instance=RequestContext(request)
+    )

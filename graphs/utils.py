@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 import codecs
 import csv
-import nltk
+# import nltk
 import re
 
+from datetime import datetime
 from StringIO import StringIO
 
 from django.db.models import F, Q
 from django.template.defaultfilters import force_escape as escape
 
-from django_descriptors.models import Descriptor
+from django_descriptors.models import Descriptor, DescribedItem
 from artworks.models import Artwork
 
 
@@ -857,3 +858,63 @@ def get_colours(n):
             colours.append((base[start] * (1.0 - x)) +
                            (base[start + 1] * x))
     return [pastel(c) for c in colours[0:n]]
+
+
+def dump_artworks_csv(filename=None):
+    if not filename:
+        now = datetime.now()
+        date = now.strftime("%Y%m%d")
+        filename = "baroqueart.dump.%s.csv" % date
+    csv_file = open(filename, "w")
+    writer = UnicodeWriter(csv_file)
+    labels = ["title", "creation_year_start", "creation_year_end", "creators",
+              "original_place", "current_place", "images",
+              "size", "serie", "descriptors"]
+    writer.writerow(labels)
+    artworks = Artwork.objects.all().select_related()
+    for artwork in artworks:
+        images = []
+        for image in artwork.images.all():
+            if image.image:
+                images.append(image.image.url)
+            elif image.url:
+                images.append(image.url)
+        descriptors = []
+        for descriptor in DescribedItem.objects.get_for_object(artwork):
+            if descriptor.value:
+                descriptors.append(u"%s: %s"
+                                   % (descriptor.descriptor.name,
+                                      descriptor.value))
+            else:
+                descriptors.append(descriptor.descriptor.name)
+        original_place = u""
+        if artwork.original_place:
+            original_place = u"%s. %s" % (artwork.original_place.title,
+                                          artwork.original_place.address)
+        current_place = u""
+        if artwork.current_place:
+            current_place = u"%s. %s" % (artwork.current_place.title,
+                                         artwork.current_place.address)
+        creators = []
+        for creator in artwork.creators.all():
+            life = u""
+            if creator.birth_year or creator.death_year:
+                life = u" (%s – %s)" % (creator.birth_year, creator.death_year)
+            creators.append(u"%s%s" % (creator.name, life))
+        serie = u""
+        if artwork.serie:
+            serie = artwork.serie.title
+        row = [
+            artwork.title,
+            artwork.creation_year_start,
+            artwork.creation_year_end,
+            u", ".join(creators),
+            original_place,
+            current_place,
+            u", ".join(images),
+            artwork.size,
+            serie,
+            u", ".join(descriptors),
+        ]
+        writer.writerow(row)
+    csv_file.close()
