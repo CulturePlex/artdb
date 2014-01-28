@@ -9,24 +9,27 @@ from django.utils.simplejson import dumps
 from django.db.models import Q
 from itertools import chain
 
+
 def public_view(request):
-    artwork_ids = [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2417, 2444, 2446, 2449, 2506, 6744, 10472, 10478, 12020, 12032, 12347, 12693, 12786, 13262, 13269, 370, 444, 575, 661, 672, 677, 782, 889, 900, 924, 941, 8770, 9560, 9705, 11668, 11885, 1012, 3581, 4069, 6128, 1189, 890, 499, 510, 1168]
-    num_artworks = Artwork.objects.filter(id__in=artwork_ids).count()
+    artworks_images = Artwork.objects.filter(images__isnull=False)
+    artwork_ids = artworks_images.values("id")
+    random_list = [d['id'] for d in artwork_ids]
+    num_artworks = len(random_list)
     if num_artworks != 0:
-        random_artwork = Artwork.objects.filter(id__in=artwork_ids)[randint(0, num_artworks-1)]
+        random_artwork = artworks_images[randint(0, num_artworks - 1)]
     else:
         random_artwork = None
-    num_creator = Creator.objects.count()
-    if num_creator != 0:
-        random_creator = Creator.objects.all()[randint(0, num_creator-1)]
-    else:
-        random_creator = None
+    creator_image = artworks_images[randint(0, num_artworks - 1)]
+    random_creator = creator_image.creators.all()[0]
     no_search_box = request.GET.get("no_search", "true")
     return render_to_response('home.html',
                               {"artwork": random_artwork,
+                              "artwork_image": random_artwork.images.all()[0],
                               "artist": random_creator,
+                              "creator_artwork_image": creator_image.images.all()[0],
                               "no_search": no_search_box,
                               }, context_instance=RequestContext(request))
+
 
 #taken and modified from django snippets
 def dynamic_query(model, fields, values, operator):
@@ -41,7 +44,7 @@ def dynamic_query(model, fields, values, operator):
     for (f, v) in zip(fields, values):
         # We only want to build a Q with a value
         if v != "":
-            kwargs = {str('%s__contains' % f) : str('%s' % v)}
+            kwargs = {unicode(u'%s__icontains' % f) : unicode(u'%s' % v)}
             queries.append(Q(**kwargs))
 
     # Make sure we have a list of filters
@@ -70,6 +73,7 @@ def dynamic_query(model, fields, values, operator):
         # Return an empty result
         return {}
 
+
 def make_query(object_name, fields, values, operators, page):
     result = None
     if object_name is None:
@@ -77,14 +81,14 @@ def make_query(object_name, fields, values, operators, page):
             artworks = dynamic_query(Artwork, ["title"], values, '')
             creators = dynamic_query(Creator, ["name"], values, '')
             series = dynamic_query(Serie, ["title"], values, '')
-            result=list(chain(artworks, creators, series))
+            result = list(chain(artworks, creators, series))
     else:
         query = None
         if len(fields) == 0:
-            exec('result = '+ object_name +'.objects.all()')
+            exec('result = ' + object_name +'.objects.all()')
         else:
             obj = None
-            exec('obj = '+ object_name)
+            exec('obj = ' + object_name)
             result = dynamic_query(obj, fields, values, operators)
     return result
 
@@ -128,11 +132,13 @@ def search_results(request):
          "footer": footer},
          context_instance=RequestContext(request))
 
+
 def contact(request):
     return render_to_response('contact.html',
     {},
     context_instance=RequestContext(request)
     )
+
 
 def about(request):
     return render_to_response('about.html',
@@ -140,17 +146,20 @@ def about(request):
     context_instance=RequestContext(request)
     )
 
+
 def login(request):
     return render_to_response('login.html',
     {},
     context_instance=RequestContext(request)
     )
 
+
 def cite_us(request):
     return render_to_response('cite_us.html',
     {},
     context_instance=RequestContext(request)
     )
+
 
 def terms(request):
     return render_to_response('terms.html',
