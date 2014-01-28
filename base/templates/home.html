@@ -154,22 +154,21 @@
             <div class="row-fluid artwork_carousel">
                 <div class="span4 offset1">
                     <div class="carousel_artwork">
-                          <img src="/media/img/arenoir.jpg">
-                              {% if artwork.images.count != 0 %}
-                              {% for artImg in artwork.images.all %}
-                                  {% if artImg.url %}
-                                      {% thumbnail artImg.url "190x190,crop" %}
+                        {% if artwork.images.count != 0 %}
+                          {% for artImg in artwork.images.all %}
+                              {% if artImg.url %}
+                                  {% thumbnail artImg.url "190x190,crop" %}
+                              {% else %}
+                                  {% if artImg.image %}
+                                      {% thumbnail artImg.image "190x190,crop" %}
                                   {% else %}
-                                      {% if artImg.image %}
-                                          {% thumbnail artImg.image "190x190,crop" %}
-                                      {% else %}
-                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
-                                      {% endif %}
+                                      {% thumbnail "img/unavailable-image.jpg" "190x190,crop" %}
                                   {% endif %}
-                              {% endfor %}
-                          {% else %}
-                              {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
-                          {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                        {% else %}
+                            {% thumbnail "img/unavailable-image.jpg" "190x190,crop" %}
+                        {% endif %}
                     </div>
                 </div>
 
@@ -206,29 +205,28 @@
             <div class="row-fluid artwork_carousel">
                 <div class="span4 offset1">
                       <div class="carousel_artwork">
-                          <img src="/media/img/arenoir.jpg">
-                              {% if artwork.images.count != 0 %} 
-                                  {% for artImg in artwork.images.all %}  
-                                      {% if artImg.url %} 
-                          {% for artwork in artist.artwork_set.all %}
-                              {% if artwork.images.count != 0 %}
-                                  {% for artImg in artwork.images.all %}
-                                      {% if artImg.url %}
-                                          {% thumbnail artImg.url "190x190,crop" %}
+                          {% if artwork.images.count != 0 %} 
+                              {% for artImg in artwork.images.all %}  
+                                  {% if artImg.url %} 
+                                    {% for artwork in artist.artwork_set.all %}
+                                      {% if artwork.images.count != 0 %}
+                                        {% for artImg in artwork.images.all %}
+                                          {% if artImg.url %}
+                                            {% thumbnail artImg.url "190x190,crop" %}
+                                          {% else %}
+                                          {% if artImg.image %}
+                                            {% thumbnail artImg.image "190x190,crop" %}
+                                          {% else %}
+                                            {% thumbnail "img/unavailable-image.jpg" "190x190,crop" %}
+                                          {% endif %}
+                                          {% endif %}
+                                        {% endfor %}
                                       {% else %}
-                                      {% if artImg.image %}
-                                          {% thumbnail artImg.image "190x190,crop" %}
-                                      {% else %}
-                                          {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
+                                        {% thumbnail "img/unavailable-image.jpg" "190x190,crop" %}
                                       {% endif %}
+                                    {% endfor %}
                                   {% endif %}
                               {% endfor %}
-                          {% else %}
-                              {% thumbnail "img/Unavailable.gif" "190x190,crop" %}
-                          {% endif %}
-                          {% endfor %}
-                          {% endif %}
-                          {% endfor %}
                           {% endif %}
                       </div>
                 </div>
