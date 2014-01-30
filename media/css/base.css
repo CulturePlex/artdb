@@ -14,7 +14,7 @@ body {
   margin-top: -5px;
 }
 
-.navbar .btn {
+.navbar   .btn {
   margin-top: -5px;
 }
 
@@ -379,7 +379,7 @@ blockquote {
 
 
 .navbar-map {
-  margin-bottom: 0px;
+  margin-bottom: -10px;
   width: 100%;
   z-index: 100;
 }
