@@ -13,16 +13,16 @@
             <td>
             {% if result.title %}
                 {% if result.creators %}
-                    <a class="pvtd_a" href="{% url artworks_record result.id %}">{{ result.title }}</a>
-                    <td><i class="icon-picture"></i></td>
+                    <i class="icon-picture"></i>
+                    <td><a class="pvtd_a" href="{% url artworks_record result.id %}">{{ result.title }}</a></td>
                 {% else %}
-                    <a class="pvtd_a" href="{% url series_record result.id %}">{{ result.title }}</a>
-                    <td><i class="icon-ellipsis-vertical"></i></td>
+                    <i class="icon-ellipsis-vertical"></i>
+                    <td><a class="pvtd_a" href="{% url series_record result.id %}">{{ result.title }}</a></td>
                 {% endif %}
             {% endif %}
             {% if result.name %}
-                <a class="pvtd_a" href="{% url creator_record result.id %}">{{ result.name }}</a>
-                <td><i class="icon-user"></i></td>
+                <i class="icon-user"></i>
+                <td><a class="pvtd_a" href="{% url creator_record result.id %}">{{ result.name }}</a></td>
             {% endif %}
         </td>
     </tr>
