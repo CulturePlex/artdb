@@ -7,7 +7,7 @@ body {
 /*Navbar*/
 
 .sbox {
-  margin-top: 5px;
+  margin-top: 7px;
 }
 
 .sbutton {
@@ -15,7 +15,7 @@ body {
 }
 
 .navbar   .btn {
-  margin-top: -5px;
+  margin-top: -3px;
 }
 
 .navbar-inner  {
