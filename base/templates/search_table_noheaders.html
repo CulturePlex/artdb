@@ -14,12 +14,15 @@
             {% if result.title %}
                 {% if result.creators %}
                     <a class="pvtd_a" href="{% url artworks_record result.id %}">{{ result.title }}</a>
+                    <td><i class="icon-picture"></i></td>
                 {% else %}
                     <a class="pvtd_a" href="{% url series_record result.id %}">{{ result.title }}</a>
+                    <td><i class="icon-ellipsis-vertical"></i></td>
                 {% endif %}
             {% endif %}
             {% if result.name %}
                 <a class="pvtd_a" href="{% url creator_record result.id %}">{{ result.name }}</a>
+                <td><i class="icon-user"></i></td>
             {% endif %}
         </td>
     </tr>
@@ -29,7 +32,7 @@
 
 <div class="pagination pagination-centered">   
     {% if results.paginator.num_pages == 1 %}
-        <span class="first-last"> First </span>
+        <span class="first-last">First</span>
     {% else %}
         <a id="first" href="?{{ search_url }}{% if footer == false %}&footer=false{% endif %}&page=1" class="first-last">First</a>
     {% endif %}
@@ -37,7 +40,7 @@
     {% if results.has_previous %}
         <a href="?{{ search_url }}{% if footer == false  %}&footer=false{% endif %}&page={{ results.previous_page_number }}"><span class="badge badge-info">Previous</span></a>
     {% else %}
-        <span class="badge badge-info"> Previous </span>
+        <span class="badge badge-info">Previous</span>
     {% endif %}
         <span class="current">
         &nbsp;&nbsp;Page {{ results.number }} of {{ results.paginator.num_pages }}&nbsp;&nbsp;
@@ -45,11 +48,11 @@
     {% if results.has_next %}
         <a href="?{{ search_url }}{% if footer == false %}&footer=false{% endif %}&page={{ results.next_page_number }}"><span class="badge badge-info">Next</span></a>
     {% else %}
-        <span class="badge badge-info"> Next </span>
+        <span class="badge badge-info">Next</span>
     {% endif %}
     &nbsp;&nbsp;
     {% if results.paginator.num_pages == 1 %}
-        <span class="first-last"> Last </span>
+        <span class="first-last">Last</span>
     {% else %}
         <a href="?{{ search_url }}{% if footer %}&footer=false{% endif %}&page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
     {% endif %}
