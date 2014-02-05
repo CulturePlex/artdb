@@ -16,7 +16,7 @@
                     <i class="icon-picture"></i>
                     <td><a class="pvtd_a" href="{% url artworks_record result.id %}">{{ result.title }}</a></td>
                 {% else %}
-                    <i class="icon-ellipsis-vertical"></i>
+                    <img scr="media/img/series-icon.png"></img>
                     <td><a class="pvtd_a" href="{% url series_record result.id %}">{{ result.title }}</a></td>
                 {% endif %}
             {% endif %}
@@ -54,7 +54,7 @@
     {% if results.paginator.num_pages == 1 %}
         <span class="first-last">Last</span>
     {% else %}
-        <a href="?{{ search_url }}{% if footer %}&footer=false{% endif %}&page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
+        <a href="?{{ search_url }}{% if footer == false %}&footer=false{% endif %}&page={{ results.paginator.num_pages }}"><span class="first-last">Last</span></a>
     {% endif %}
 </div>
 
