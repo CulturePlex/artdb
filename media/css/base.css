@@ -1,5 +1,9 @@
 /* Globals */
 
+.td-icon {
+  width: 20px;
+}
+
 body {
     padding-bottom: 40px;
 }
@@ -14,7 +18,7 @@ body {
   margin-top: -5px;
 }
 
-.navbar   .btn {
+.navbar .btn {
   margin-top: -3px;
 }
 
@@ -326,6 +330,13 @@ html, body {
 /*Login*/
 .login-row {
 margin-left: 0px;
+}
+
+/*Advanced search*/
+
+.header-advanced {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 /*Search results */
