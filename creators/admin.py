@@ -25,20 +25,17 @@ class CreatorAdmin(AutocompleteAdmin):
     fieldsets = (
             (None, {
                 'fields': ('name', 'gender',
-                           'birth_year', 'fm_birth_place', 'birth_place',
-                           'death_year', 'fm_death_place', 'death_place',
+                           'birth_year', 'birth_place',
+                           'death_year', 'death_place',
                            'school',
-                           'activity_start_year', 'activity_end_year',
-                           'fm_descriptors'),
+                           'activity_start_year', 'activity_end_year'),
             }),
             (_(u'More info'), {
                 'classes': ('collapse', ),
-                'fields': ('masters', 'images', 'fm_bibliography',
+                'fields': ('masters', 'images',
                            'notes'),
             }),
     )
-    readonly_fields = ('fm_birth_place', 'fm_death_place',
-                       'fm_bibliography', 'fm_descriptors')
     exclude = ('user', 'references')
     search_fields = ('name', 'school__name', 'birth_place__title',
                      'death_place__title')
@@ -101,11 +98,10 @@ class SchoolAdmin(AutocompleteAdmin):
 
     fieldsets = (
             (None, {
-                'fields': ('name', 'fm_place', 'place',
+                'fields': ('name', 'place',
                            'start_year', 'end_year', 'affiliation', 'notes')
             }),
     )
-    readonly_fields = ('fm_place', )
     search_fields = ('name', 'place__title')
     related_search_fields = {
         'place': ('title', 'address'),
@@ -142,11 +138,10 @@ class WorkingHistoryAdmin(AutocompleteAdmin):
 
     fieldsets = (
             (None, {
-                'fields': ('creator', 'fm_place', 'place',
+                'fields': ('creator', 'place',
                            'start_year', 'end_year', 'notes')
             }),
     )
-    readonly_fields = ('fm_place', )
     search_fields = ('creator__name', 'place__title', 'start_year', 'end_year')
     related_search_fields = {
         'creator': ('name', 'birth_year', 'death_year'),

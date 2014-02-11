@@ -70,18 +70,15 @@ class ArtworkAdmin(AutocompleteAdmin):
             (None, {
                 'fields': ('title', 'serie', 'creators',
                            'creation_year_start', 'creation_year_end',
-                           'fm_inventory', 'inventory', 'inscription',
-                           'fm_original_place', 'original_place',
-                           'fm_current_place', 'current_place',
-                           'fm_descriptors'),
+                           'inventory', 'inscription',
+                           'original_place',
+                           'current_place'),
             }),
             (_(u'More info'), {
                 'classes': ('collapse', ),
                 'fields': ('size', 'images', 'notes'),
             }),
     )
-    readonly_fields = ('fm_original_place', 'fm_current_place',
-                       'fm_inventory', 'fm_descriptors')
     exclude = ('user', 'references')
     search_fields = ('title', 'creation_year_start', 'creation_year_end',
                      'inscription', 'notes', 'size', 'serie__title')
@@ -198,11 +195,10 @@ class VirginAdmin(AutocompleteAdmin):
     fieldsets = (
             (None, {
                 'fields': ('name',
-                           'fm_apparition_place', 'apparition_place',
+                           'apparition_place',
                            'apparition_date', 'notes'),
             }),
     )
-    readonly_fields = ('fm_apparition_place', )
     search_fields = ('name', 'apparition_place', 'apparition_date')
     list_display = ('name', 'apparition_place', 'artworks', 'apparition_date')
     related_search_fields = {
