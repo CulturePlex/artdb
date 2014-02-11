@@ -10,7 +10,7 @@ def url_map_points(points, width=300, height=300, create_path=True, marker_size=
     if len(points) == 1:
         lat = points[0][1]
         lon = points[0][0]
-        return u"http://maps.googleapis.com/maps/api/staticmap?sensor=false&center=%s,%s&zoom=5&size=%sx%s&maptype=%s&key=%s&markers=size:%s|color:blue|%s,%s" % (str(lat), str(lon), str(width), str(height), map_type, settings.GOOGLE_API_KEY, marker_size, str(lat), str(lon))
+        return u"http://maps.googleapis.com/maps/api/staticmap?sensor=false&center=%s,%s&zoom=5&size=%sx%s&maptype=%s&key=%s&markers=icon:http://baroqueart.cultureplex.ca/media/img/markers/image.png|size:%s|color:blue|%s,%s" % (str(lat), str(lon), str(width), str(height), map_type, settings.GOOGLE_API_KEY, marker_size, str(lat), str(lon))
     else:
         if create_path:
             path = "|".join(["%s,%s" % (lat, lon) for lat, lon in points])
