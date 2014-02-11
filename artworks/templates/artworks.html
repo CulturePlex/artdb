@@ -1,44 +1,8 @@
 {% extends "home.html" %}
 {% load i18n %}
 {% load convert_tags place_map_tags %}
-{% block more_scripts %}
+{% block extra_scripts %}
 <script type='text/javascript' src='/media/js/tooltip.js'>
-</script>
-<script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js">
-</script>
-<script type="text/javascript">
-    
-    this.searchClicked = function(){
-        $('#search_button').click(function(){
-            search_data = $('#search_text').val();
-            window.location.href = '{% url search %}?data=' + search_data;
-        });
-    };
-    
-    this.advancedSearch = function(){
-        $('#advanced_search_button').click(function(){
-            window.location.href = '{% url search %}';
-        });
-    };
-    
-    this.initialize_menu = function(div_name){
-        $(div_name).mouseenter(function(){
-            $(div_name).cycle('pause');
-        });
-        
-        $(div_name).mouseleave(function(){
-            $(div_name).cycle('resume');
-        });
-        
-        $(div_name).cycle({
-            fx: 'fade',
-            timeout: '500' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-        });
-        
-    }
-    $(document).ready(function(){
-        initialize_menu('.img_artwork');
-    });
 </script>
 {% endblock %}
 
@@ -59,20 +23,20 @@
         <div class="span6">
                         <div class="img-artwork">
                             {% if artwork.images.count != 0 %}
-                                {% for artImg in artwork.images.all %} 
-                                    {% if artImg.url %} 
+                                {% for artImg in artwork.images.all %}
+                                    {% if artImg.url %}
                                         {% thumbnail artImg.url "390x390,crop" %}
                                     {% else %}
                                         {% if artImg.image %}
                                             {% thumbnail artImg.image "390x390,crop" %}
                                         {% else %}
-                                            {% thumbnail "img/unavailable-image.jpg" "390x390,crop" %} 
+                                            {% thumbnail "img/unavailable-image.jpg" "390x390,crop" %}
                                         {% endif %}
-                                    {% endif %} 
-                                {% endfor %} 
+                                    {% endif %}
+                                {% endfor %}
                             {% else %}
-                                {% thumbnail "img/unavailable-image.jpg" "390x390,crop" %} 
-                            {% endif %} 
+                                {% thumbnail "img/unavailable-image.jpg" "390x390,crop" %}
+                            {% endif %}
                         </div>
         </div>
         <div class="span6">
@@ -84,25 +48,25 @@
                             </div>
 <!--Dated In-->
                             <div class="dl-horizontal">
-                            {% if artwork.creation_year_start and artwork.creation_year_end %} 
-                                <dt>Dated In:</dt> 
+                            {% if artwork.creation_year_start and artwork.creation_year_end %}
+                                <dt>Dated In:</dt>
                                 <dd>{{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}</dd>
-                            {% else %} 
-                                <dt>Dated In:</dt> 
+                            {% else %}
+                                <dt>Dated In:</dt>
                                 <dd>n/a</dd>
                             {% endif%}
                             </div>
 <!--Original Location-->
                             <div class="dl-horizontal">
-                            {% if artwork.original_place %} 
+                            {% if artwork.original_place %}
                                 <dt>Original Location:</dt>
                             {% if artwork.original_place.get_valid_point %}
-                                <dd><a rel="{% url map %}" href="{% place_map artwork.original_place.get_valid_point %}">{{ artwork.original_place.title }}</a></dd>
+                                <dd><a class="preview" rel="{% url map %}" href="{% place_map artwork.original_place.get_valid_point %}">{{ artwork.original_place.title }}</a></dd>
                             {% else %}
                                 {{ artwork.original_place.title }}
                             {% endif %}
-                            {% else %} 
-                                <dt>Original Destination:</dt> 
+                            {% else %}
+                                <dt>Original Destination:</dt>
                                 <dd>n/a</dd>
                             {% endif%}
                             </div>
@@ -111,23 +75,23 @@
                             {% if artwork.current_place %}
                                 <dt>Current Location:</dt>
                             {% if artwork.current_place.get_valid_point %}
-                                <dd><a rel="{% url map %}" href="{% place_map artwork.current_place.get_valid_point %}">{{ artwork.current_place.title }}</a></dd>
+                                <dd><a class="preview" rel="{% url map %}" href="{% place_map artwork.current_place.get_valid_point %}">{{ artwork.current_place.title }}</a></dd>
                             {% else %}
                                 {{ artwork.current_place.title }}
                             {% endif %}
-                            {% else %} 
+                            {% else %}
                                 <dt>Current Location:<dt>
                                 <dd>n/a</dd>
                             {% endif%}
                             </div>
-    
+
 <!--Series-->
                             <div class="dl-horizontal">
-                            {% if artwork.serie.id %} 
-                                <dt>It belongs to series:</dt> 
+                            {% if artwork.serie.id %}
+                                <dt>It belongs to series:</dt>
                                 <dd><a href="{% url series_record artwork.serie.id %}">{{ artwork.serie }} </a></dd>
-                            {% else %} 
-                                <dt>Series:</dt> 
+                            {% else %}
+                                <dt>Series:</dt>
                                 <dd>None</dd>
                             {% endif %}
                             </div>

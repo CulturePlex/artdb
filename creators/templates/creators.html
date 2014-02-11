@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% load i18n place_map_tags%}
 
-{% block more_scripts %}
+{% block extra_scripts %}
 <script type='text/javascript' src='/media/js/tooltip.js'></script>
 {% endblock %}
 
@@ -18,7 +18,7 @@
             {{ creator.birth_year }}
         {% else %}
             n.a.
-        {% endif %} 
+        {% endif %}
             -
         {% if creator.death_year %}
             {{ creator.death_year }}
@@ -35,39 +35,39 @@
 <!--            Place of Birth-->
             <blockquote>
                 <div class="dl-horizontal">
-                    {% if creator.birth_place %} 
+                    {% if creator.birth_place %}
                         <dt>Place of birth:</dt>
                     {% if creator.birth_place.get_valid_point %}
-                        <dd><a  rel="{% url map %}" href="{% place_map creator.birth_place.get_valid_point %}">{{ creator.birth_place.title }}</a></dd>
+                        <dd><a class="preview" rel="{% url map %}" href="{% place_map creator.birth_place.get_valid_point %}">{{ creator.birth_place.title }}</a></dd>
                     {% else %}
                         <dd>{{ creator.birth_place.title }}</dd>
                     {% endif %}
-                    {% else %} 
-                        <dt>Place of birth:</dt> 
+                    {% else %}
+                        <dt>Place of birth:</dt>
                         <dd>n.a.</dd>
                     {% endif%}
                 </div>
 <!--            Place of Death-->
                 <div class="dl-horizontal">
-                    {% if creator.death_place %} 
+                    {% if creator.death_place %}
                         <dt>Place of death:</dt>
                     {% if creator.death_place.get_valid_point %}
-                        <dd><a rel="{% url map %}" href="{% place_map creator.death_place.get_valid_point %}">{{ creator.death_place.title }}</a></dd>
+                        <dd><a class="preview" rel="{% url map %}" href="{% place_map creator.death_place.get_valid_point %}">{{ creator.death_place.title }}</a></dd>
                     {% else %}
                         <dd>{{ creator.death_place.title }}</dd>
                     {% endif %}
-                    {% else %} 
+                    {% else %}
                         <dt>Place of death:</dt>
                         <dd>n.a.</dd>
                     {% endif%}
                 </div>
 <!--                Activity Period-->
                 <div class="dl-horizontal">
-                    {% if creator.activity_start_year and creator.activity_end_year %} 
+                    {% if creator.activity_start_year and creator.activity_end_year %}
                         <dt>Activity Period:</dt>
                         <dd>{{ creator.activity_start_year }} - {{ creator.activity_end_year }}</dd>
                     {% else %}
-                        <dt>Activity Period:</dt> 
+                        <dt>Activity Period:</dt>
                         <dd>n.a.</dd>
                     {% endif%}
                 </div>
@@ -83,13 +83,13 @@
                 <h5>List of Artworks</h5><br/>
                 <div class="list_artworks">
                     <table class="table">
-                
+
                     {% for artwork in creator.artwork_set.all %}
                         <tr>
                             <td><a class="pvtd_a" href="{% url artworks_record artwork.id %}">{{ artwork.title }}</a></td>
                         </tr>
                     {% endfor %}
-                
+
                     </table>
                 </div>
             </td>

@@ -2,29 +2,8 @@
 {% load i18n %}
 {% load convert_tags %}
 
-{% block more_scripts %}
+{% block extra_scripts %}
 <script type='text/javascript' src='/media/js/tooltip.js'></script>
-<script type="text/javascript" src="http://cloud.github.com/downloads/malsup/cycle/jquery.cycle.all.2.74.js"></script>
-<script type='text/javascript'>
-    this.initialize_menu = function(div_name){
-        $(div_name).mouseenter(function(){
-            $(div_name).cycle('pause');
-        });
-        
-        $(div_name).mouseleave(function(){
-            $(div_name).cycle('resume');
-        });
-        
-        $(div_name).cycle({
-            fx: 'fade',
-            timeout: '2000' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
-        });
-        
-    }
-    $(document).ready(function(){ 
-        initialize_menu('.img_artwork');
-    });
-    </script>
 {% endblock %}
 
 {% block title %}{% trans "Series" %}{% endblock %}
@@ -62,15 +41,19 @@
                             <a href="{% url artworks_record artwork.id %}">{{ artwork.title }}</a>
                         </td>
                         <td>
-                        {% for creator in artwork.creators.all %} 
-                            {{ creator.name }} 
+                        {% for creator in artwork.creators.all %}
+                            {{ creator.name }}
                         {% endfor %}
                         </td>
                         <td>
                             {{ artwork.creation_year_start }} - {{ artwork.creation_year_end }}
                         </td>
                         <td>
-                            {{  artwork.current_place.title }}
+                            {% if artwork.current_place.get_valid_point %}
+                                <a class="preview" rel="{% url map %}" href="{% place_map artwork.current_place.get_valid_point %}">{{ artwork.current_place.title }}</a>
+                            {% else %}
+                                {{ artwork.current_place.title }}
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
@@ -80,8 +63,8 @@
     </div>
 
 <!--PAGINATION-->
-    <div class="pagination pagination-centered">   
-        {% if artworks.paginator.num_pages == 1 %}                
+    <div class="pagination pagination-centered">
+        {% if artworks.paginator.num_pages == 1 %}
             <span class="first-last"> First </span>
         {% else %}
             <a id="first" href="?page=1" class="first-last">First</a>
