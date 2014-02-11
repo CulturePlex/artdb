@@ -1,5 +1,9 @@
 /* Globals */
 
+.td-icon {
+  width: 20px;
+}
+
 body {
     padding-bottom: 40px;
 }
@@ -7,16 +11,21 @@ body {
 /*Navbar*/
 
 .sbox {
-  padding-top: 5px;
+  margin-top: 7px;
 }
 
 .sbutton {
-  margin-bottom: 15px;
+  margin-top: -5px;
+}
+
+.navbar .btn {
+  margin-top: -3px;
 }
 
 .navbar-inner  {
-  margin-bottom: 10px;
+  margin-bottom: 10px; 
 }
+
 
  /* Carousel base class */
 
@@ -323,6 +332,24 @@ html, body {
 margin-left: 0px;
 }
 
+/*Advanced search*/
+
+.header-advanced {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+/*Search results */
+
+.header-search {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.no-result {
+    margin-left: 20px;
+}
+
 /*Cite Us*/
 
 .cite_us {
@@ -374,7 +401,7 @@ blockquote {
 
 
 .navbar-map {
-  margin-bottom: 0px;
+  margin-bottom: -10px;
   width: 100%;
   z-index: 100;
 }

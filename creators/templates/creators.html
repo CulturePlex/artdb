@@ -76,25 +76,30 @@
 <br/><br/><br/>
 <div class="row-fluid">
     <div class="span6">
+    {% if creator.artwork_set.all %}
         <tr>
         <!--List of Artworks-->
             <td colspan="2" align="left" style="padding: 0 0 0 0px;">
-                <h5>List of Artworks:</h5><br/>
+                <h5>List of Artworks</h5><br/>
                 <div class="list_artworks">
                     <table class="table">
+                
                     {% for artwork in creator.artwork_set.all %}
                         <tr>
                             <td><a class="pvtd_a" href="{% url artworks_record artwork.id %}">{{ artwork.title }}</a></td>
                         </tr>
                     {% endfor %}
+                
                     </table>
                 </div>
             </td>
         </tr>
+    {% endif %}
     </div>
 
     <div class="span5 offset1">
     <!--Masters and Students-->
+    {% if creator.masters.all %}
         <td width="45%" style="padding: 20px 0 0 0px;" align="center">
             <div style="width: 275px;">
                  <h5>Masters & Students</h5>
@@ -120,6 +125,7 @@
                 </table>
             </div>
         </td>
+    {% endif %}
     </div>
 </div>
 </div>

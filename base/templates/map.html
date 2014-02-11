@@ -36,10 +36,10 @@ class="navbar-map-body"
 				<ul class="nav pull-right">
 					<li><a href="{% url advanced_search %}">Advanced Search</a></li>
 				</ul>
-				<div class="input-append pull-right search_div">
-					<input class="span2" id="search_text" type="text" value="{{ data }}">
-					<button class="btn" type="button" id="search_button"><i class="icon-search"></i></button>
-				</div>
+                  <form class="nav pull-right" name="search" action="{% url search_results %}" method="get">
+                    <input class="span2 sbox" id="search_text" type="text" value="{{ data }}" name="data">
+                    <button class="btn sbutton" type="submit" id="search_button"><i class="icon-search"></i></button>
+                  </form>
 			</div>
 	</div>
 </div>
