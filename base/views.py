@@ -15,17 +15,17 @@ def public_view(request):
     artwork_ids = artworks_images.values("id")
     random_list = [d['id'] for d in artwork_ids]
     num_artworks = len(random_list)
+    random_artwork = None
+    random_artwork_image = None
+    random_creator = None
+    random_creator_image = None
     if num_artworks != 0:
         random_artwork = artworks_images[randint(0, num_artworks - 1)]
         random_artwork_image = random_artwork.images.all()[0]
         creator_image = artworks_images[randint(0, num_artworks - 1)]
-        random_creator = creator_image.creators.all()[0]
-        random_creator_image = creator_image.images.all()[0]
-    else:
-        random_artwork = None
-        random_artwork_image = None
-        random_creator = None
-        random_creator_image = None
+        if creator_image.creators.exists():
+            random_creator = creator_image.creators.all()[0]
+            random_creator_image = creator_image.images.all()[0]
     no_search_box = request.GET.get("no_search", "true")
     return render_to_response('home.html',
                               {"artwork": random_artwork,
