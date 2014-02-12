@@ -1,13 +1,19 @@
-from django.shortcuts import HttpResponse, render_to_response
+import mimetypes
+from itertools import chain
+from os import path
+from random import randint
+
+from django.db.models import Q
+from django.conf import settings
+from django.core.paginator import Paginator
+from django.core.servers.basehttp import FileWrapper
 from django.core.urlresolvers import reverse
+from django.shortcuts import HttpResponse, render_to_response
 from django.template import RequestContext
+
 from artworks.models import Artwork, Serie
 from creators.models import Creator
-from random import randint
-from django.core.paginator import Paginator, InvalidPage, EmptyPage
-from django.utils.simplejson import dumps
-from django.db.models import Q
-from itertools import chain
+
 
 
 def public_view(request):
@@ -163,6 +169,29 @@ def cite_us(request):
     return render_to_response('cite_us.html',
     {},
     context_instance=RequestContext(request)
+    )
+
+
+def data(request):
+    if 'download' in request.session:
+        download_name = getattr(settings, "DUMP_FILENAME",
+                                "baroqueart.dump.zip")
+        download_folder = getattr(settings, "DUMP_FOLDER", "dumps")
+        download_file = path.join(settings.MEDIA_ROOT, download_folder,
+                                  download_name)
+        wrapper = FileWrapper(open(download_file))
+        content_type = mimetypes.guess_type(download_file)[0]
+        response = HttpResponse(wrapper, content_type=content_type)
+        response['Content-Length'] = path.getsize(download_file)
+        response['Content-Disposition'] = ("attachment; filename=%s"
+                                           % download_name)
+        del request.session['download']
+        return response
+    request.session['download'] = True
+    return render_to_response(
+        'data.html',
+        {},
+        context_instance=RequestContext(request),
     )
 
 

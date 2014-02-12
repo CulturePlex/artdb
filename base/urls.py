@@ -10,5 +10,6 @@ urlpatterns = patterns('base.views',
     url(r'about/$', 'about', name="about"),
     url(r'cite-us/$', 'cite_us', name="cite_us"),
     url(r'terms/$', 'terms', name="terms"),
+    url(r'data/$', 'data', name="data"),
     url(r'login/$', 'login', name="login")
 )

@@ -1,0 +1,33 @@
+{% extends "home.html" %}
+{% load i18n %}
+
+{% block title %}{% trans "About" %}{% endblock %}
+
+
+{% block main_body %}
+
+
+<div class="container-fluid">
+
+    <h2>BaroqueArt Dataset (CC0)</h2>
+
+    <div class="about_text">
+
+        <p class="about_lines">Thanks for downloading the dataset!</p>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+{% block extra_scripts %}
+<script type="text/javascript">
+(function ($, undefined) {
+    function download() {
+        location.href = "{% url data %}";
+    }
+    download();
+})(jQuery);
+</script>
+{% endblock %}
