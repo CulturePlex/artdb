@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "About" %}{% endblock %}
+{% block title %}{% trans "Data" %}{% endblock %}
 
 
 {% block main_body %}
@@ -14,6 +14,7 @@
     <div class="about_text">
 
         <p class="about_lines">Thanks for downloading the dataset!</p>
+        <small>If the download doesn't start, click <a href="{% url data %}">here</a>.</small>
 
     </div>
 
@@ -27,7 +28,10 @@
     function download() {
         location.href = "{% url data %}";
     }
-    download();
+    var timeout = setTimeout(function () {
+        download();
+        clearTimeout(timeout);
+    }, 3000);
 })(jQuery);
 </script>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends "home.html" %}
 {% load i18n %}
 
-{% block title %}{% trans "About" %}{% endblock %}
+{% block title %}{% trans "Cite Us" %}{% endblock %}
 
 
 {% block main_body %}
@@ -11,7 +11,7 @@
 
 	<h2>How to cite us...</h2>
 
-	<div class="container-fluid cite_us">	
+	<div class="container-fluid cite_us">
 		<h1><small>MLA</small></h1>
 			<div class="container type_container">
 				<p class="lead cite_type">Specific Entry</p>
@@ -58,12 +58,12 @@
 	<div class="container-fluid cite_us">
 		<h1><small>BibTeX</small></h1>
 			<pre>
-@online{ 
+@online{
 	author = "CulturePlex Lab",
 	title = "BaroqueArt Database",
 	year = "{% now "Y" %}",
 	url = "http://baroqueart.cultureplex.ca/",
-	urldate = "{% now "Y-m-d" %}" 
+	urldate = "{% now "Y-m-d" %}"
 }
 			</pre>
 	</div>
