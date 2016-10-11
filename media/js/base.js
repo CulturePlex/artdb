@@ -35,7 +35,7 @@ function loadClusters() {
     var polygons = [];
     var dateSelectedRange = null;
     var artworkPlaceFilter = "artwork_original_place";
-    var markerClusterer = new MarkerClusterer(map, markers, {maxZoom: 10});
+    var markerClusterer = new MarkerClusterer(map, markers, {maxZoom: 10, imagePath: '/media/img/markers/m'});
     var yearFrom, yearTo, urlHash;
     if (location.hash || location.search) {
         urlHash = (location.hash || location.search).substring(1).split("&");
